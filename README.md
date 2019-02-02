@@ -3,7 +3,7 @@
 
 
 ## Schema
-![Schema Image](assets/Schema.JPG)
+![Schema Image](Assets/Schema.jpg)
 
 ### Schema Description
 - The user contains a Primary Key of ID(int), UserName(varchar), and dietary preference properties(bit). User has the navigational property of Saved Recipes. It has a one to many relationship with SavedRecipes. 
