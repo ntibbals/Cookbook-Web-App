@@ -2,7 +2,7 @@
 
 ### Vision
 
-- This is an all in one Cookbook. It allows the end user the ability to search for new recipes, save recipes to their personal cookbook, create new recipes to hold in their cookbook, provide feedback/review on recipes as well as set dietary preferences/requirements. It is designed to be a go to resource of all of your favorite recipes so you aren’t constantly having to do the same google search countless times or hit up Grandma for her German Chocolate cake recipe. In addition, having the ability to provide feedback on existing recipes provides transparency on both the quality of the recipe as well as creative additions to some of the staples we all love.
+- This is an all in one Cookbook. It allows the end user the ability to search for new recipes, save recipes to their personal cookbook, create new recipes to hold in their cookbook, provide feedback/review on recipes as well as set dietary preferences/requirements. It is designed to be a go to resource of all of your favorite recipes so you arenâ€™t constantly having to do the same google search countless times or hit up Grandma for her German Chocolate cake recipe. In addition, having the ability to provide feedback on existing recipes provides transparency on both the quality of the recipe as well as creative additions to some of the staples we all love.
 
 ### Scope
 - This application will be a source of popular recipes
