@@ -20,8 +20,8 @@
 - Ability to save and delete reference to recipe
 - Full crud abilitys on Comments for recipes
 
-- Ability to Add, Edit, View and Delete Recipes
-- Ability to Add, Edit, View and Delete Ingredients
+- Admin Only : Ability to Add, Edit, View and Delete Recipes
+- Admin Only: Ability to Add, Edit, View and Delete Ingredients
 - Ability to Add, Edit, View and Delete Instructions
 - Ability to Add and Delete RecipeIngredients
 - Remove associations upon deletion
@@ -56,7 +56,7 @@
 - If they create an account, our application will save their information into our user table
 - A user can then search for a recipe which will call out to our recipe api
 - Our recipe table will then pull information from the recipe ingredients, reviews and instructions tables
-- If the user sees a recipe they like, they can then save a reference recipe to the SaveRecipe table.
-- They can then view their saved recipes will call out to the API and return their saved recipes via ID. 
-- A user can create a comment, saving it to the Comment table which is connected to the SavedRecipes table.
+- If the user sees a recipe they like, they can then save a reference recipe to the SaveRecipe table
+- They can then view their saved recipes will call out to the API and return their saved recipes via ID
+- A user can create a comment, saving it to the Comment table which is connected to the SavedRecipes table
 
