@@ -6,10 +6,13 @@
 
 ### Scope
 - This application will be a source of popular recipes
-- This application will allow users the ability to provide feedback/reviews on recipes
-- This application will allows users to save and edit their favorite recipes
-- This application will allow users to search for specific recipes
-- Users will have the ability to create a personal profile
+- This application will allow users the ability to comment on saved recipes.
+- This application will allows users to save recipes.
+- This application will allow users to search for specific recipes.
+- Users will have the ability to create a personal profile.
+
+### Out of Scope
+- No passwords / user authentication
 
 ### MVP
 - Ability to create new user
@@ -25,10 +28,11 @@
 
 
 ### Stretch
-- Add ability to leave reviews
-- Add ability to generate a meal plan
 - Add Meal Type properties to recipes.
-- Filter API results by Ingredient or Meal Type
+- Add ability to leave reviews.
+- Add ability to generate a meal plan.
+- Filter API results by Ingredient or Meal Type.
+- Ability to add photos associated with recipe. 
 
 ### Functional Requirements
 - New user can create a user name
