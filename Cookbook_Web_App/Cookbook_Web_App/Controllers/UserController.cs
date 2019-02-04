@@ -15,5 +15,24 @@ namespace Cookbook_Web_App.Controllers
         {
             _context = context;
         }
+
+        //Get User
+        public IActionResult Index(int? ID)
+        {
+            if (ID == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.User.FirstOrDefault(u => u.ID == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        //Create User
     }
 }
