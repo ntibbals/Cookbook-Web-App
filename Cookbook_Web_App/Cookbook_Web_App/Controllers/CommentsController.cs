@@ -18,6 +18,13 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
+
+        //Get: Create User
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
         /// <summary>
         /// Get Comments
         /// </summary>
@@ -39,6 +46,13 @@ namespace Cookbook_Web_App.Controllers
             return View(comment);
         }
 
+
+        //Get: Create User
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
         /// <summary>
         /// Create comment
         /// </summary>

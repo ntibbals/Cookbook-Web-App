@@ -1,4 +1,4 @@
-﻿@model Cookbook_Web_App.Models.Comments
+﻿@model IEnumerable<Cookbook_Web_App.Models.Comments>
 
 @{ 
     ViewData["Title"] = "Index";
@@ -6,4 +6,12 @@
 
 <h1> Comments Test Layout</h1>
 
-@{  await Html.RenderPartialAsync("PartialView", Model.Comment); }
+<div>
+    <a asp-action="Create">Create New Comment</a>
+    @foreach (var item in Model)
+    {
+        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+
+    }
+</div>
