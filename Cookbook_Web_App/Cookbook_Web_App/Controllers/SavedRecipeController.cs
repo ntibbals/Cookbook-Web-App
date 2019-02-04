@@ -143,7 +143,7 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Delete SavedRecipe
-        [HttpPost, ActionName("Delete")]]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             var savedRecipe = await _context.SavedRecipe.FirstAsync(s => s.ID == id);
