@@ -1,4 +1,5 @@
 ﻿using Cookbook_Web_App.Data;
+using Cookbook_Web_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,24 @@ namespace Cookbook_Web_App.Controllers
             return View(user);
         }
 
-        //Create User
+        //Get: Create User
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //POST: create user
+        [HttpPost]
+        public async IActionResult Create([Bind ("ID,UserName")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(user);
+        }
     }
 }
