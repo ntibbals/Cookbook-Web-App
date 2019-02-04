@@ -104,5 +104,33 @@ namespace Cookbook_Web_App.Controllers
             }
         }
 
+        //Get Delete user
+        public async IActionResult Delete(int id)
+        {
+            var user = await _context.User.FirstOrDefault(u => u.ID == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        //Post Delete user
+        [HttpPost, ActionName("Delete")]
+        public async IActionResult ConfirmDelete(int id)
+        {
+            var user = await _context.User.FirstOrDefault(u => u.ID == id);
+            _context.User.Remove(user);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(Home) //TODO need to make home page;
+        }
+
+
+        private bool UserExists(int id)
+        {
+            return _context.User.Any(u => u.ID == id);
+        }
     }
 }
