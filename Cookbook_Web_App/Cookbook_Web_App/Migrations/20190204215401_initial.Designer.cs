@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190204174012_comments-initial")]
-    partial class commentsinitial
+    [Migration("20190204215401_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,13 +27,29 @@ namespace Cookbook_Web_App.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Comment")
-                        .HasColumnType("varchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250);
 
                     b.Property<int>("SavedRecipeID");
 
                     b.HasKey("ID");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Cookbook_Web_App.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

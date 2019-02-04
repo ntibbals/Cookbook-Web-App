@@ -25,7 +25,8 @@ namespace Cookbook_Web_App.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Comment")
-                        .HasColumnType("varchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(512)");
 
                     b.Property<int>("SavedRecipeID");
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cookbook_Web_App.Models.Comments>
+﻿@model Cookbook_Web_App.Models.Comments
 
 @{ 
     ViewData["Title"] = "Index";
@@ -8,10 +8,8 @@
 
 <div>
     <a asp-action="Create">Create New Comment</a>
-    @foreach (var item in Model)
-    {
-        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
-        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
 
-    }
+        @*<a asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a>*@
+
 </div>
