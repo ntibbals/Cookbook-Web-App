@@ -1,6 +1,7 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,5 +54,55 @@ namespace Cookbook_Web_App.Controllers
 
             return View(user);
         }
+
+        //Get: Edit user
+        public async IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.User.FirstOrDefault(u => u.ID == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        //Post: Edit user
+        [HttpPost]
+        public async IActionResult Edit(int id, [Bind("ID,UserName")] User user)
+        {
+            if (id != user.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(user);
+                    await _context.SaveChangesAsync();
+
+                }
+                catch (Exception)
+                {
+                    if (!UserExists(user.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+
+                }
+            }
+        }
+
     }
 }
