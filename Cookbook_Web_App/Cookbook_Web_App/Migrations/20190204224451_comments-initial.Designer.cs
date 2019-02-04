@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190204213643_initial")]
-    partial class initial
+    [Migration("20190204224451_comments-initial")]
+    partial class commentsinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,7 @@ namespace Cookbook_Web_App.Migrations
 
             modelBuilder.Entity("Cookbook_Web_App.Models.SavedRecipe", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("SavedRecipeID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -51,9 +51,13 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<string>("Reviews");
 
+                    b.Property<int?>("UserID");
+
                     b.Property<string>("comments");
 
-                    b.HasKey("ID");
+                    b.HasKey("SavedRecipeID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("SavedRecipe");
                 });
@@ -64,15 +68,11 @@ namespace Cookbook_Web_App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("SavedRecipeID");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(25);
 
                     b.HasKey("ID");
-
-                    b.HasIndex("SavedRecipeID");
 
                     b.ToTable("User");
                 });
@@ -85,11 +85,11 @@ namespace Cookbook_Web_App.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Cookbook_Web_App.Models.User", b =>
+            modelBuilder.Entity("Cookbook_Web_App.Models.SavedRecipe", b =>
                 {
-                    b.HasOne("Cookbook_Web_App.Models.SavedRecipe")
-                        .WithMany("User")
-                        .HasForeignKey("SavedRecipeID");
+                    b.HasOne("Cookbook_Web_App.Models.User", "User")
+                        .WithMany("SavedRecipe")
+                        .HasForeignKey("UserID");
                 });
 #pragma warning restore 612, 618
         }
