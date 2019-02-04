@@ -1,0 +1,15 @@
+﻿@model Cookbook_Web_App.Models.Comments
+@{
+    ViewData["Title"] = "Create";
+}
+<h1> Test test</h1>
+<div>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div>
+        <label asp-for="Comment"></label>
+        <input asp-for="Comment" />
+        <ipnut typeof="submit" value="Create" />
+
+
+    </form>
+</div>
