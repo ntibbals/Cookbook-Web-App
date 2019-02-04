@@ -65,13 +65,13 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefault(u => u.ID == id);
+            var user =  _context.User.FirstOrDefault(u => u.ID == id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            return View(Index/user);
+            return View(user);
         }
 
         //Post: Edit user
