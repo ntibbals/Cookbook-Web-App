@@ -17,6 +17,6 @@ namespace Cookbook_Web_App.Models
 
 
         //Navigational Properties
-        public ICollection<SavedRecipe> SavedRecipe { get; set; } 
+        //public ICollection<SavedRecipe> SavedRecipe { get; set; } 
     }
 }
