@@ -48,7 +48,6 @@ namespace Cookbook_Web_App.Controllers
 
 
         //Get: Create User
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -59,7 +58,7 @@ namespace Cookbook_Web_App.Controllers
         /// <param name="comment">new comment</param>
         /// <returns>view</returns>
         [HttpPost]
-        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID")] Comments comments )
+        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID, Comment")] Comments comments )
         {
             try
             {
