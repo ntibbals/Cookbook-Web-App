@@ -1,4 +1,5 @@
 ﻿using Cookbook_Web_App.Data;
+using Cookbook_Web_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,7 +23,7 @@ namespace Cookbook_Web_App.Controllers
         /// </summary>
         /// <param name="ID">comment ID</param>
         /// <returns>Comments</returns>
-        public async Task<IActionResult> IndexAsync(int? id)
+        public async Task<IActionResult> Index(int? id)
         {
             if(id == null)
             {
@@ -37,5 +38,26 @@ namespace Cookbook_Web_App.Controllers
 
             return View(comment);
         }
+
+        /// <summary>
+        /// Create comment
+        /// </summary>
+        /// <param name="comment">new comment</param>
+        /// <returns>view</returns>
+        [HttpPost]
+        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID")] Comments comments )
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(comments);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(comments);
+        }
+
+        
+
+        
     }
 }
