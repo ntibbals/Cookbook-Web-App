@@ -26,13 +26,13 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            var user = await _context.SavedRecipe.FirstOrDefault(s => s.ID == id);
-            if (user == null)
+            var savedRecipe = await _context.SavedRecipe.FirstOrDefault(s => s.ID == id);
+            if (savedRecipe == null)
             {
                 return NotFound();
             }
 
-            return View(user);          
+            return View(savedRecipe);          
         }
 
         //Create SavedRecipe
