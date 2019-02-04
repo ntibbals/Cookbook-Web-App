@@ -11,8 +11,8 @@ namespace Cookbook_Web_App.Models
     {
         public int ID { get; set; }
         public int SavedRecipeID { get; set; }
-        [Required]
-        [StringLength(512)]
+        [Column(TypeName ="varchar(max)")]
+        [MaxLength]
         public string Comment { get; set; }
     }
 }
