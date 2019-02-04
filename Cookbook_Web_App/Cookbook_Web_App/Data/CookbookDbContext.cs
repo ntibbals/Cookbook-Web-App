@@ -25,5 +25,6 @@ namespace Cookbook_Web_App.Data
         }
 
         public DbSet<Comments> Comments { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }
