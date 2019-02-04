@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Cookbook_Web_App.Models.Comments
+
 @{
+    ViewData["Title"] = "Delete";
+
 }
+<h1> Test delete</h1>
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete"/>
+        <a asp-action="Index" id="create-butt">Back to List</a>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

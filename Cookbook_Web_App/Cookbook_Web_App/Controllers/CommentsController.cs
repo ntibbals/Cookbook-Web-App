@@ -48,7 +48,6 @@ namespace Cookbook_Web_App.Controllers
 
 
         //Get: Create User
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -59,15 +58,24 @@ namespace Cookbook_Web_App.Controllers
         /// <param name="comment">new comment</param>
         /// <returns>view</returns>
         [HttpPost]
-        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID")] Comments comments )
+        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID, Comment")] Comments comments )
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(comments);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(comments);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(comments);
             }
-            return View(comments);
+            catch (Exception)
+            {
+                return Redirect("https://http.cat/500");
+
+            }
         }
 
         /// <summary>
@@ -108,11 +116,20 @@ namespace Cookbook_Web_App.Controllers
 
             if(ModelState.IsValid)
             {
-                _context.Update(comments);
-                await _context.SaveChangesAsync();
+                try
+                {
+
+                    _context.Update(comments);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+                return RedirectToAction(nameof(Index));
             }
 
-            return RedirectToAction(nameof(Index));
+            return View(comments);
         }
 
 
