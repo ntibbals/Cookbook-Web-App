@@ -17,5 +17,16 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
+        //Get SavedRecipe
+        public IActionResult Index(int? ID)
+        {
+            if (ID == null)
+            {
+                return NotFound();
+            }
+            return View(savedRecipe);
+        }
+
+        //Create SavedRecipe
     }
 }
