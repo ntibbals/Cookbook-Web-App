@@ -8,7 +8,8 @@
     <form asp-action="Login" method="post">
         <div asp-validation-summary="ModelOnly"></div>
         <label for="userInput"> Please Enter Your UserName</label>
-        <input id="userInput" type="text" name="userInput"/>
+        <input id="userInput" type="text" name="userInput" />
         <input type="submit" value="Login" />
     </form>
+    <p>New User? Create a Login <a asp-action="Create" asp-route-id="@Model.ID">Create</a> </p>
 </section>

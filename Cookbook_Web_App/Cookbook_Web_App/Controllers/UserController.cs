@@ -44,7 +44,7 @@ namespace Cookbook_Web_App.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Create));
             }
 
             var user = _context.User.FirstOrDefault(u => u.ID == id);
