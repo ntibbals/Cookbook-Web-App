@@ -1,4 +1,11 @@
-﻿@model Cookbook_Web_App.Models.User 
+﻿@model Cookbook_Web_App.Models.User
+
+@{
+    ViewData["Title"] = "Index";
+
+    Layout = "_Layout";
+}
+
 <section>
     <p> @Model.ID)</p>
     <p> @Model.UserName</p>
