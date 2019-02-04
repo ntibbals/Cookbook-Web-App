@@ -4,14 +4,16 @@ using Cookbook_Web_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    partial class CookbookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190204213643_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,9 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<string>("Reviews");
 
-                    b.Property<int?>("UserID");
-
                     b.Property<string>("comments");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("UserID");
-
 
                     b.ToTable("SavedRecipe");
                 });
@@ -88,19 +85,11 @@ namespace Cookbook_Web_App.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-
             modelBuilder.Entity("Cookbook_Web_App.Models.User", b =>
                 {
                     b.HasOne("Cookbook_Web_App.Models.SavedRecipe")
                         .WithMany("User")
                         .HasForeignKey("SavedRecipeID");
-
-            modelBuilder.Entity("Cookbook_Web_App.Models.SavedRecipe", b =>
-                {
-                    b.HasOne("Cookbook_Web_App.Models.User", "User")
-                        .WithMany("SavedRecipe")
-                        .HasForeignKey("UserID");
-
                 });
 #pragma warning restore 612, 618
         }

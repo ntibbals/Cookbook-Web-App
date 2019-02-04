@@ -1,7 +1,21 @@
-﻿
+﻿@model Cookbook_Web_App.Models.SavedRecipe
 @{
     ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
+
+<h4>SavedRecipe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="SavedRecipeID" class="control-label"></label>
+                <select asp-for="SavedRecipeID" class="form-control" asp-items="ViewBag.ID"></select>
+            </div>
+
+</form>
+    </div>
+</div>
 
