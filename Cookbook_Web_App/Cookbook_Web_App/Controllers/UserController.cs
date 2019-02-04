@@ -127,7 +127,8 @@ namespace Cookbook_Web_App.Controllers
             _context.User.Remove(user);
 
             await _context.SaveChangesAsync();
-            return View(); //TODO need to make home page;
+            return RedirectToAction(nameof(Index));
+                //TODO Redirect to home page instead of dead index page
         }
 
 

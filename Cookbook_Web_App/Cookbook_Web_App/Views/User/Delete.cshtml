@@ -1,5 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Cookbook_Web_App.Models.User
 @{
+    ViewData["Title"] = "Delete";
 }
+
+<p> Are you sure you want to delete your user, @Model.UserName? This will delete all your recipes and comments as well. </p>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ID"/>
+    <input type="hidden" asp-for="UserName" />
+    <input type="submit" value="Delete" />
+</form>

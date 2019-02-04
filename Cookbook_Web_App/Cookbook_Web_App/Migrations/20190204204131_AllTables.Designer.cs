@@ -4,14 +4,16 @@ using Cookbook_Web_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    partial class CookbookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190204204131_AllTables")]
+    partial class AllTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +59,6 @@ namespace Cookbook_Web_App.Migrations
 
                     b.HasIndex("UserID");
 
-
                     b.ToTable("SavedRecipe");
                 });
 
@@ -67,15 +68,11 @@ namespace Cookbook_Web_App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("SavedRecipeID");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(25);
 
                     b.HasKey("ID");
-
-                    b.HasIndex("SavedRecipeID");
 
                     b.ToTable("User");
                 });
@@ -88,19 +85,11 @@ namespace Cookbook_Web_App.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-
-            modelBuilder.Entity("Cookbook_Web_App.Models.User", b =>
-                {
-                    b.HasOne("Cookbook_Web_App.Models.SavedRecipe")
-                        .WithMany("User")
-                        .HasForeignKey("SavedRecipeID");
-
             modelBuilder.Entity("Cookbook_Web_App.Models.SavedRecipe", b =>
                 {
                     b.HasOne("Cookbook_Web_App.Models.User", "User")
                         .WithMany("SavedRecipe")
                         .HasForeignKey("UserID");
-
                 });
 #pragma warning restore 612, 618
         }
