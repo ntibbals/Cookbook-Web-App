@@ -16,6 +16,6 @@ namespace Cookbook_Web_App.Models
         public string Reviews { get; set; }
         public string comments { get; set; }
         public ICollection<Comments> Comments { get; set; }
-        public ICollection<User> User { get; set; }
+        //public ICollection<User> User { get; set; }
     }
 }
