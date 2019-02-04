@@ -12,7 +12,7 @@ namespace Cookbook_Web_App.Models
         public int ID { get; set; }
         public int SavedRecipeID { get; set; }
         [Required]
-        [Column(TypeName = "StringLength(512)")]
+        [StringLength(512)]
         public string Comment { get; set; }
     }
 }

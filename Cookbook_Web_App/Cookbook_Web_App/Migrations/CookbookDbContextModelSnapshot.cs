@@ -26,7 +26,7 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("varchar(512)");
+                        .HasMaxLength(512);
 
                     b.Property<int>("SavedRecipeID");
 

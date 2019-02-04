@@ -14,7 +14,7 @@ namespace Cookbook_Web_App.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SavedRecipeID = table.Column<int>(nullable: false),
-                    Comment = table.Column<string>(maxLength: 250, nullable: false)
+                    Comment = table.Column<string>(maxLength: 512, nullable: false)
                 },
                 constraints: table =>
                 {
