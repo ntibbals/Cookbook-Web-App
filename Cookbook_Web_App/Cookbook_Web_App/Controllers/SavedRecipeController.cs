@@ -1,6 +1,7 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,24 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
-        //Get SavedRecipe
-        public async Task<IActionResult> Index(int? ID)
+        public async Task<IActionResult> Index()
         {
-            if (ID == null)
+            var cookbookDbContext = _context.SavedRecipe.Include(s => s.User).Include(s => s.Comments);
+            return View(await cookbookDbContext.ToListAsync());
+        }
+
+        //Get SavedRecipe
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var savedRecipe = await _context.SavedRecipe.FirstOrDefault(s => s.ID == id);
+            var savedRecipe = await _context.SavedRecipe
+                .Include(s => s.User)
+                .Include(s => s.Comments)
+                .FirstOrDefaultAsync(r => r.ID == id);
             if (savedRecipe == null)
             {
                 return NotFound();
@@ -38,12 +48,14 @@ namespace Cookbook_Web_App.Controllers
         //Create SavedRecipe
         public IActionResult Create()
         {
+            ViewData["UserID"] = new SelectList(_context.User, "ID", "ID");
+            ViewData["CommentID"] = new SelectList(_context.Comments, "ID", "ID");
             return View();
         }
 
         //Post
         [HttpPost]
-        public async IActionResult Create([Bind("ID,APIReference")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Create([Bind("ID,APIReference")] SavedRecipe savedRecipe)
         {
             if (ModelState.IsValid)
             {
@@ -51,25 +63,28 @@ namespace Cookbook_Web_App.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserID"] = new SelectList(_context.User, "ID", "ID");
+            ViewData["CommentID"] = new SelectList(_context.Comments, "ID", "ID");
 
             return View(savedRecipe);
         }
 
         //Edit SavedRecipe
-        public async IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var savedRecipe = await _context.SavedRecipe.FirstOrDefault(s => s.ID == id);
+            var savedRecipe = await _context.SavedRecipe.FindAsync(id);
             if (savedRecipe == null)
             {
                 return NotFound();
             }
-
-            return View(SavedRecipe);
+            ViewData["UserID"] = new SelectList(_context.User, "ID", "ID");
+            ViewData["CommentID"] = new SelectList(_context.Comments, "ID", "ID");
+            return View(savedRecipe);
         }
 
         //Post: Edit SavedRecipe
@@ -99,33 +114,43 @@ namespace Cookbook_Web_App.Controllers
                     {
                         throw;
                     }
-
                 }
+                return RedirectToAction(nameof(Index));
             }
+            ViewData["UserID"] = new SelectList(_context.User, "ID", "ID");
+            ViewData["CommentID"] = new SelectList(_context.Comments, "ID", "ID");
             return View(savedRecipe);
         }
 
         //Get Delete SavedRecipe
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var savedRecipe = _context.SavedRecipe.FirstOrDefault(s => s.ID == id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var savedRecipe = await _context.SavedRecipe
+                .Include(s => s.User)
+                .Include(s => s.Comments)
+                .FirstOrDefaultAsync(r => r.ID == id);
             if (savedRecipe == null)
             {
                 return NotFound();
             }
 
-            return View(SavedRecipe);
+            return View(savedRecipe);
         }
 
         //Delete SavedRecipe
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var savedRecipe = _context.SavedRecipe.FirstOrDefault(s => s.ID == id);
+            var savedRecipe = await _context.SavedRecipe.FirstAsync(s => s.ID == id);
             _context.SavedRecipe.Remove(savedRecipe);
 
             await _context.SaveChangesAsync();
-            return View(); 
+            return RedirectToAction(nameof(Index));
         }
 
 
