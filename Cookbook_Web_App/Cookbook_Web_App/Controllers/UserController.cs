@@ -51,14 +51,14 @@ namespace Cookbook_Web_App.Controllers
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), user);
             }
 
-            return View($"Index/{user}");
+            return View(Index(user.ID));
         }
 
         //Get: Edit user
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -104,7 +104,7 @@ namespace Cookbook_Web_App.Controllers
 
                 }
             }
-            return View(user);
+            return RedirectToAction(nameof(Index), user);
         }
 
         //Get Delete user
