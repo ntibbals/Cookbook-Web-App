@@ -36,6 +36,7 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get: Create User
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -43,6 +44,7 @@ namespace Cookbook_Web_App.Controllers
 
         //POST: create user
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind ("ID,UserName")] User user)
         {
             if (ModelState.IsValid)
@@ -52,7 +54,7 @@ namespace Cookbook_Web_App.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(user);
+            return View($"Index/{user}");
         }
 
         //Get: Edit user
@@ -63,13 +65,13 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            var user = _context.User.FirstOrDefault(u => u.ID == id);
+            var user = await _context.User.FirstOrDefault(u => u.ID == id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(Index/user);
         }
 
         //Post: Edit user

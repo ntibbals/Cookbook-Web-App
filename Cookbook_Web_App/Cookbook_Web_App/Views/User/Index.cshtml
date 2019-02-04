@@ -1,0 +1,6 @@
+﻿@model Cookbook_Web_App.Models.User 
+<section>
+    <p> @Model.ID)</p>
+    <p> @Model.UserName</p>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
+</section>

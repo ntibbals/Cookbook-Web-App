@@ -1,0 +1,13 @@
+﻿@model Cookbook_Web_App.Models.User
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<section>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <input type="submit" value="Save" />
+    </form>
+</section>
