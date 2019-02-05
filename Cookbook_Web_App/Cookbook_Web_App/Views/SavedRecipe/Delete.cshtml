@@ -1,7 +1,14 @@
-﻿
+﻿@model Cookbook_Web_App.Models.SavedRecipe
 @{
     ViewData["Title"] = "Delete";
+
+    Layout = "_Layout";
 }
 
-<h1>Delete</h1>
+<p> Are you sure you want to delete this recipe, @Model.SavedRecipeID?</p>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="SavedRecipeID" />
+    <input type="submit" value="Delete" />
+</form>
+<a asp-action="Index">Back to List</a>
 

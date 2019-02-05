@@ -1,7 +1,28 @@
-﻿
+﻿@model Cookbook_Web_App.Models.SavedRecipe
+
 @{
     ViewData["Title"] = "Details";
+
+    Layout = "_Layout";
 }
 
-<h1>Details</h1>
+<h1>My Recipes</h1>
+<div>
+    <a asp-action="Create">Details of @Model.SavedRecipeID</a>
+
+    <div>
+        <div>
+            @Html.DisplayNameFor(model => model.SavedRecipeID) :
+            @Html.DisplayFor(model => model.SavedRecipeID)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Instructions) :
+            @Html.DisplayFor(model => model.Instructions)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Comments) :
+            @Html.DisplayFor(model => model.Comments)
+        </div>
+    </div>
+    </div>
 
