@@ -47,6 +47,8 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<string>("Instructions");
 
+                    b.Property<int>("Name");
+
                     b.Property<string>("Reviews");
 
                     b.Property<int?>("UserID");
@@ -65,6 +67,7 @@ namespace Cookbook_Web_App.Migrations
                             SavedRecipeID = 11,
                             APIReference = 22,
                             Instructions = "Cook until you can't cook no mo",
+                            Name = 0,
                             comments = "This is so good"
                         });
                 });

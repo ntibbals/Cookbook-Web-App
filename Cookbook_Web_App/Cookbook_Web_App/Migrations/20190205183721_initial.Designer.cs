@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190204231539_seeded-1")]
-    partial class seeded1
+    [Migration("20190205183721_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,8 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<string>("Instructions");
 
+                    b.Property<int>("Name");
+
                     b.Property<string>("Reviews");
 
                     b.Property<int?>("UserID");
@@ -67,6 +69,7 @@ namespace Cookbook_Web_App.Migrations
                             SavedRecipeID = 11,
                             APIReference = 22,
                             Instructions = "Cook until you can't cook no mo",
+                            Name = 0,
                             comments = "This is so good"
                         });
                 });
