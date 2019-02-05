@@ -71,9 +71,21 @@ namespace Cookbook_Web_App.Data
                     ID = 7,
                     UserName = "MizzBakesStuff"
 
-                }
-
-                );
+                },
+                      ID = 33,
+                      UserName = "Tom"
+                  }
+                  );
+                  
+            modelBuilder.Entity<SavedRecipe>().HasData(
+                  new SavedRecipe
+                  {
+                      SavedRecipeID = 11,
+                      APIReference = 22,
+                      Instructions = "Cook until you can't cook no mo",
+                      comments = "This is so good",
+                  }
+                  );
         }
 
         public DbSet<Comments> Comments { get; set; }
