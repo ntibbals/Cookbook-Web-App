@@ -1,9 +1,52 @@
-﻿
+﻿@model IEnumerable<Cookbook_Web_App.Models.SavedRecipe>
+
 @{
     ViewData["Title"] = "Index";
 
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>My Recipes</h1>
+<div>
+    <a asp-action="Create">Create a Recipe</a>
 
+    <table class="table col-md-4 offset-md-4 table-bordered">
+        <thead class="thead-light">
+
+            <tr class=" = " table-seconday>
+                <th>
+                    @Html.DisplayNameFor(model => model.SavedRecipeID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Instructions)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.SavedRecipeID)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Instructions)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.SavedRecipeID">Details of a Recipe</a>
+                    <a asp-action="Delete" asp-route-id="@item.SavedRecipeID">Delete a Recipe</a>
+                </td>
+            </tr>
+
+
+            }
+
+        </tbody>
+        </table>
+</div>
