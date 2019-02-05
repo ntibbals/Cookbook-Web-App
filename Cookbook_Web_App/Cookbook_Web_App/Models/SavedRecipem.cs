@@ -11,10 +11,6 @@ namespace Cookbook_Web_App.Models
         public int APIReference { get; set; }
 
         //Navigation Properties
-
-        public string Instructions { get; set; }
-        public string Reviews { get; set; }
-        public string comments { get; set; }
         public ICollection<Comments> Comments { get; set; }
         public User User { get; set; }
     }
