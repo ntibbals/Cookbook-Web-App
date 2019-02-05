@@ -17,13 +17,34 @@ namespace Cookbook_Web_App.Controllers
         {
             _context = context;
         }
+        //Get LOGIN
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Login(string userInput)
+        {
+
+            User user = _context.User.FirstOrDefault(u => u.UserName == userInput);
+            if (user != null)
+            {
+                return RedirectToAction(nameof(Index), user);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Create));
+            }
+
+        }
         //Get User
         public IActionResult Index(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Create));
             }
 
             var user = _context.User.FirstOrDefault(u => u.ID == id);

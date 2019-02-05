@@ -1,0 +1,15 @@
+﻿@model Cookbook_Web_App.Models.User
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<section>
+    <form asp-action="Login" method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+        <label for="userInput"> Please Enter Your UserName</label>
+        <input id="userInput" type="text" name="userInput" />
+        <input type="submit" value="Login" />
+    </form>
+    <p>New User? Create a Login <a asp-action="Create">Create</a> </p>
+</section>
