@@ -26,7 +26,7 @@ namespace Cookbook_Web_App
         {
             services.AddMvc();
             services.AddDbContext<CookbookDbContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
         }
 
