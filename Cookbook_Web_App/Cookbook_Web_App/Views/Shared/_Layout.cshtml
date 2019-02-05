@@ -12,13 +12,22 @@
 <body>
 
     <header>
-        <nav class="navbar">
-            <a href="/" class="navbar-brand">Home</a>
-            <a href="/User" class="navbar-brand">User</a>
-            <a href="/SavedRecipe" class="navbar-brand">SavedRecipe</a>
-            <a href="/Comments" class="navbar-brand">Comments</a>
-
-        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a href="/" class="navbar-brand">Website</a>
+            <ul class="navbar-nav">
+                <li class="navbar-item">
+                    <a href="/User" class="nav-link">User</a>
+                </li>
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a href="/SavedRecipe" class="nav-link">SavedRecipe</a>
+                    </li>
+                    <ul class="navbar-nav">
+                        <li class="navbar-item">
+                            <a href="/Comments" class="navbar-bra">Comments</a>
+                        </li>
+                    </>
+</nav>
     </header>
     <main>
         @RenderBody()
