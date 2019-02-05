@@ -1,11 +1,16 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+
 
 namespace Cookbook_Web_App.Controllers
 {
@@ -14,26 +19,25 @@ namespace Cookbook_Web_App.Controllers
         private readonly CookbookDbContext _context;
 
         static HttpClient client = new HttpClient();
-
+        public static string Path = "https://cookbookapi20190205105239.azurewebsites.net/api/values";
         public SearchController(CookbookDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+            public async Task<IEnumerable<IActionResult>> Index()
         {
-            string [] values = null;
-            //GetAsync takes in a string path. To get the API connection to work, run the API and replace this local host with your local host(keep api/values)
-            //To test that this works, got to Search/Index
-            //TODO: After deployment, change localhost to API path
-            HttpResponseMessage response = await client.GetAsync("http://localhost:50170/api/values");
-            if (response.IsSuccessStatusCode)
+            IEnumerable<Recipe> recipe = null;
+            HttpResponseMessage response = await client.GetAsync(Path);
+            if(response.IsSuccessStatusCode)
             {
-                values = await response.Content.ReadAsAsync<string[]>();
-
+                recipe = await response.Content.ReadAsAsync<IEnumerable<Recipe>>();
             }
+            return View(recipe);
 
-            return View(values);
         }
-    }
+
+
+
+        }
 }
