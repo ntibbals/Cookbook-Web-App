@@ -22,6 +22,58 @@ namespace Cookbook_Web_App.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    ID = 1,
+                    UserName = "HoneyLavender37"
+
+                },
+
+                new User
+                {
+                    ID = 2,
+                    UserName = "HappyDude123"
+
+                },
+
+                new User
+                {
+                    ID = 3,
+                    UserName = "TacoGuy99"
+
+                },
+
+                new User
+                {
+                    ID = 4,
+                    UserName = "CroissantBuns12"
+
+                },
+
+                new User
+                {
+                    ID = 5,
+                    UserName = "Chicken4ever"
+
+                },
+
+                new User
+                {
+                    ID = 6,
+                    UserName = "ILikeEggs"
+
+                },
+
+                new User
+                {
+                    ID = 7,
+                    UserName = "MizzBakesStuff"
+
+                }
+
+                );
         }
 
         public DbSet<Comments> Comments { get; set; }
