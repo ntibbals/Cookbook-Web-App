@@ -12,18 +12,63 @@
 <body>
 
     <header>
-        <nav class="navbar">
-            <a href="/" class="navbar-brand">Home</a>
-            <a href="/User" class="navbar-brand">User</a>
-            <a href="/SavedRecipe" class="navbar-brand">SavedRecipe</a>
-            <a href="/Comments" class="navbar-brand">Comments</a>
-
+        <nav class="navbar navbar-light bg-light">
+            <a href="#" class="navbar-brand">Website</a>
+            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-tagret="#navbarCollapse">Open</button>*@
+            @*<div class="collapse navbar-collapse" id="navbarCollapse">*@
+            <ul class="navbar-nav">
+                <li class="navbar-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/User" class="nav-link">User</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/SavedRecipe" class="nav-link">SavedRecipe</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/Comments" class="nav-link">Comments</a>
+                </li>
+            </ul>
+            @*</div>*@
         </nav>
     </header>
-    <main>
-        @RenderBody()
-    </main>
-    <footer></footer>
+
+    <div class="container" style="margin-top:30px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 bg-light">
+                            <h3>Favorite Recipe 1</h3>
+
+                        </div>
+                        <div class="col-sm-4 bg-light">
+                            <h3>Favorite Recipe 2</h3>
+
+                        </div>
+                        <div class="col-sm-4 bg-light">
+                            <h3>Favorite Recipe 3</h3>
+
+                        </div>
+
+                        <div class="col-7 bg-light text-center">
+                            <h3>Something about the site</h3>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <main>
+                    @RenderBody()
+                </main>
+                <footer class="page-footer font-small blue solid">
+                    <div class="footer-copyright text-center py-3">
+                        © 2019 Copyright:
+                        <a href=""> LocalCookBook.com</a>
+                    </div>
+                </footer>
 
 </body>
 </html>

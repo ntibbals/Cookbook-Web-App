@@ -1,3 +1,8 @@
 ﻿body {
     background-color: cornsilk;
 }
+
+.col {
+   border: solid;
+   color: black;
+}
