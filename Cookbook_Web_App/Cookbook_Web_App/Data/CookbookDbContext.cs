@@ -72,9 +72,11 @@ namespace Cookbook_Web_App.Data
                     UserName = "MizzBakesStuff"
 
                 },
+                new User
+                {
                       ID = 33,
                       UserName = "Tom"
-                  }
+                }               
                   );
                   
             modelBuilder.Entity<SavedRecipe>().HasData(

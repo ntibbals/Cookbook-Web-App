@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Cookbook_Web_App.Controllers
 {
@@ -31,6 +32,8 @@ namespace Cookbook_Web_App.Controllers
             User user = _context.User.FirstOrDefault(u => u.UserName == userInput);
             if (user != null)
             {
+
+                HttpContext.Session.SetString("UserName", userInput);
                 return RedirectToAction(nameof(Index), user);
             }
             else
@@ -40,19 +43,15 @@ namespace Cookbook_Web_App.Controllers
 
         }
         //Get User
-        public IActionResult Index(int? id)
+        public IActionResult Index()
         {
-            if (id == null)
+            var name = HttpContext.Session.GetString("UserName");
+            User user = _context.User.FirstOrDefault(u => u.UserName == name);
+
+            if (user == null)
             {
                 return RedirectToAction(nameof(Create));
             }
-
-            var user = _context.User.FirstOrDefault(u => u.ID == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
             return View(user);
         }
 
@@ -75,7 +74,7 @@ namespace Cookbook_Web_App.Controllers
                 return RedirectToAction(nameof(Index), user);
             }
 
-            return View(Index(user.ID));
+            return View(Index());
         }
 
         //Get: Edit user
