@@ -1,6 +1,33 @@
-﻿@model string[]
+﻿@model IEnumerable<Cookbook_Web_App.Models.Recipe>
+@{
+    ViewData["Title"] = "Index";
 
-@foreach (var item in Model)
-{
-    <p>@item</p>
+    Layout = "_Layout";
 }
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    <thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>
+                    @recipe.ID
+                </td>
+                <td>
+                    @recipe.Name
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@recipe.ID">GetDetails</a>
+                </td>
+            </tr>
+
+        }
+    <tbody>
+</table>
