@@ -72,6 +72,7 @@ namespace Cookbook_Web_App.Data
                     UserName = "MizzBakesStuff"
 
                 },
+                new User { 
                       ID = 33,
                       UserName = "Tom"
                   }
@@ -82,8 +83,6 @@ namespace Cookbook_Web_App.Data
                   {
                       SavedRecipeID = 11,
                       APIReference = 22,
-                      Instructions = "Cook until you can't cook no mo",
-                      comments = "This is so good",
                   }
                   );
         }

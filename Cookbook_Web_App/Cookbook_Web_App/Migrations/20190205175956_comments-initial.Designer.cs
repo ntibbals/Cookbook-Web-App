@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190204231539_seeded-1")]
-    partial class seeded1
+    [Migration("20190205175956_comments-initial")]
+    partial class commentsinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,13 +47,7 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<int>("APIReference");
 
-                    b.Property<string>("Instructions");
-
-                    b.Property<string>("Reviews");
-
                     b.Property<int?>("UserID");
-
-                    b.Property<string>("comments");
 
                     b.HasKey("SavedRecipeID");
 
@@ -65,9 +59,7 @@ namespace Cookbook_Web_App.Migrations
                         new
                         {
                             SavedRecipeID = 11,
-                            APIReference = 22,
-                            Instructions = "Cook until you can't cook no mo",
-                            comments = "This is so good"
+                            APIReference = 22
                         });
                 });
 
@@ -86,6 +78,41 @@ namespace Cookbook_Web_App.Migrations
                     b.ToTable("User");
 
                     b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            UserName = "HoneyLavender37"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            UserName = "HappyDude123"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            UserName = "TacoGuy99"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            UserName = "CroissantBuns12"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            UserName = "Chicken4ever"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            UserName = "ILikeEggs"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            UserName = "MizzBakesStuff"
+                        },
                         new
                         {
                             ID = 33,

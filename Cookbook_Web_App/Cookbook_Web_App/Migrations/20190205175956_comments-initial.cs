@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cookbook_Web_App.Migrations
 {
-    public partial class initial : Migration
+    public partial class commentsinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,9 +27,6 @@ namespace Cookbook_Web_App.Migrations
                     SavedRecipeID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     APIReference = table.Column<int>(nullable: false),
-                    Instructions = table.Column<string>(nullable: true),
-                    Reviews = table.Column<string>(nullable: true),
-                    comments = table.Column<string>(nullable: true),
                     UserID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -61,6 +58,26 @@ namespace Cookbook_Web_App.Migrations
                         principalTable: "SavedRecipe",
                         principalColumn: "SavedRecipeID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "SavedRecipe",
+                columns: new[] { "SavedRecipeID", "APIReference", "UserID" },
+                values: new object[] { 11, 22, null });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "ID", "UserName" },
+                values: new object[,]
+                {
+                    { 1, "HoneyLavender37" },
+                    { 2, "HappyDude123" },
+                    { 3, "TacoGuy99" },
+                    { 4, "CroissantBuns12" },
+                    { 5, "Chicken4ever" },
+                    { 6, "ILikeEggs" },
+                    { 7, "MizzBakesStuff" },
+                    { 33, "Tom" }
                 });
 
             migrationBuilder.CreateIndex(
