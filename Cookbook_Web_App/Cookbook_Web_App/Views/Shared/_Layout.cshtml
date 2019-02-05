@@ -5,34 +5,33 @@
     <title>Home Page</title>
     <link href="~/reset.css" rel="stylesheet" />
     <link href="~/StyeSheet.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
 </head>
 <body>
 
     <header>
         <nav class="navbar navbar-light bg-light">
-            <a href="/" class="navbar-brand">Website</a>
-            <button class="navbar-toggle" data-toggle="collapse" data-tagret="#navbarCollapse">Open</button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav">
-                <li class="navbar-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/User" class="nav-link">User</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/SavedRecipe" class="nav-link">SavedRecipe</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/Comments" class="nav-link">Comments</a>
-                </li>
-            </ul>
-            </div>
-                   
-</nav>
+            <a href="#" class="navbar-brand">Local Cook Book</a>
+            @*<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-tagret="#navbarCollapse">Open</button>*@
+
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/User" class="nav-link">User</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/SavedRecipe" class="nav-link">SavedRecipe</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Comments" class="nav-link">Comments</a>
+                    </li>
+                </ul>
+           
+
+        </nav>
     </header>
     <main>
         @RenderBody()
