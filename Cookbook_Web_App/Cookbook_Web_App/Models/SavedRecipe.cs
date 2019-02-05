@@ -9,6 +9,7 @@ namespace Cookbook_Web_App.Models
     {
         public int SavedRecipeID { get; set; }
         public int APIReference { get; set; }
+        public int Name { get; set; }
 
         //Navigation Properties
 

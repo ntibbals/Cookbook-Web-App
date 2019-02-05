@@ -50,7 +50,7 @@ namespace Cookbook_Web_App.Controllers
 
         //Post
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("UserID,APIReference")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Create([Bind("UserID,APIReference,Name")] SavedRecipe savedRecipe)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace Cookbook_Web_App.Controllers
 
         //Post: Edit SavedRecipe
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,APIReference")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,APIReference,Name")] SavedRecipe savedRecipe)
         {
             if (id != savedRecipe.SavedRecipeID)
             {
