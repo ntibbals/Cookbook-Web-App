@@ -24,7 +24,9 @@ namespace Cookbook_Web_App.Controllers
         {
             var name = HttpContext.Session.GetString("UserName");
             User user = _context.User.FirstOrDefault(u => u.UserName == name);
-            return View(await _context.SavedRecipe.ToListAsync());
+            var recipes = await _context.SavedRecipe.ToListAsync();
+            var userRecipes = recipes.Where(r => r.UserID == user.ID);
+            return View(userRecipes);
         }
 
         //Get SavedRecipe
@@ -34,8 +36,6 @@ namespace Cookbook_Web_App.Controllers
             {
                 return NotFound();
             }
-            var name = HttpContext.Session.GetString("UserName");
-            User user = _context.User.FirstOrDefault(u => u.UserName == name);
             var savedRecipe = await _context.SavedRecipe
                 .FirstOrDefaultAsync(r => r.SavedRecipeID == id);
             if (savedRecipe == null)
@@ -54,7 +54,7 @@ namespace Cookbook_Web_App.Controllers
 
         //Post
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("UserID,APIReference,Name")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Create([Bind("SavedRecipeID,UserID,APIReference,Name")] SavedRecipe savedRecipe)
         {
             var name = HttpContext.Session.GetString("UserName");
             User user = _context.User.FirstOrDefault(u => u.UserName == name);
@@ -86,7 +86,7 @@ namespace Cookbook_Web_App.Controllers
 
         //Post: Edit SavedRecipe
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,APIReference,Name")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Edit(int id, [Bind("SavedRecipeID,UserID,APIReference,Name")] SavedRecipe savedRecipe)
         {
             if (id != savedRecipe.SavedRecipeID)
             {

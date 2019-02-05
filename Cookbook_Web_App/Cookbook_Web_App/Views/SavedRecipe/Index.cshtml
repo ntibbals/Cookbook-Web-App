@@ -18,7 +18,7 @@
                     @Html.DisplayNameFor(model => model.SavedRecipeID)
                 </th>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Instructions)*@
+                    @Html.DisplayNameFor(model => model.Name);
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Comments)
@@ -36,10 +36,10 @@
                     @Html.DisplayFor(modelItem => item.SavedRecipeID)
                 </td>
                 <td>
-                    @*@Html.DisplayFor(modelItem => item.Instructions)*@
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
+                    <p>Put comments here</p>
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.SavedRecipeID">Details of a Recipe</a>

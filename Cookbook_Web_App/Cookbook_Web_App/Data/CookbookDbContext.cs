@@ -77,14 +77,15 @@ namespace Cookbook_Web_App.Data
                       UserName = "Tom"
                   }
                   );
-                  
-            modelBuilder.Entity<SavedRecipe>().HasData(
-                  new SavedRecipe
-                  {
-                      SavedRecipeID = 11,
-                      APIReference = 22,
-                  }
-                  );
+
+            //modelBuilder.Entity<SavedRecipe>().HasData(
+            //      new SavedRecipe
+            //      {
+            //          SavedRecipeID = 11,
+            //          UserID = 1,
+            //          APIReference = 22,
+            //      }
+            //      );
         }
 
         public DbSet<Comments> Comments { get; set; }

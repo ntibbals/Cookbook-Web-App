@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cookbook_Web_App.Migrations
 {
-    public partial class commentsinitial : Migration
+    public partial class pleasework : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,8 +26,9 @@ namespace Cookbook_Web_App.Migrations
                 {
                     SavedRecipeID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserID = table.Column<int>(nullable: false),
                     APIReference = table.Column<int>(nullable: false),
-                    UserID = table.Column<int>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -37,7 +38,7 @@ namespace Cookbook_Web_App.Migrations
                         column: x => x.UserID,
                         principalTable: "User",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,11 +60,6 @@ namespace Cookbook_Web_App.Migrations
                         principalColumn: "SavedRecipeID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "SavedRecipe",
-                columns: new[] { "SavedRecipeID", "APIReference", "UserID" },
-                values: new object[] { 11, 22, null });
 
             migrationBuilder.InsertData(
                 table: "User",
