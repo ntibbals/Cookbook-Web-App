@@ -33,7 +33,7 @@ namespace Cookbook_Web_App.Controllers
             if (user != null)
             {
 
-                HttpContext.Session.SetString("UserName", userInput);
+                HttpContext.Session.SetString("UserName", user.UserName);
                 return RedirectToAction(nameof(Index), user);
             }
             else
@@ -71,6 +71,7 @@ namespace Cookbook_Web_App.Controllers
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
+                HttpContext.Session.SetString("UserName", user.UserName);
                 return RedirectToAction(nameof(Index), user);
             }
 
@@ -147,8 +148,15 @@ namespace Cookbook_Web_App.Controllers
             _context.User.Remove(user);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            HttpContext.Session.Remove("UserName");
+            return RedirectToAction("Index", "Home");
                 //TODO Redirect to home page instead of dead index page
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            HttpContext.Session.Remove("UserName");
+            return RedirectToAction("Index", "Home"); //TODO redirect to homepage
         }
 
 
