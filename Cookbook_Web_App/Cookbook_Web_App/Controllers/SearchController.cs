@@ -26,7 +26,7 @@ namespace Cookbook_Web_App.Controllers
             //GetAsync takes in a string path. To get the API connection to work, run the API and replace this local host with your local host(keep api/values)
             //To test that this works, got to Search/Index
             //TODO: After deployment, change localhost to API path
-            HttpResponseMessage response = await client.GetAsync("http://localhost:51687/api/values");
+            HttpResponseMessage response = await client.GetAsync("http://localhost:50170/api/values");
             if (response.IsSuccessStatusCode)
             {
                 values = await response.Content.ReadAsAsync<string[]>();
