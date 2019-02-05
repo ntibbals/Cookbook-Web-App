@@ -1,0 +1,15 @@
+﻿@model Cookbook_Web_App.Models.Recipe
+
+@Model.ID
+@Model.Name
+@foreach (var item in Model.Instructions)
+{
+
+    <p>@item.stepNumberID @item.action</p>
+}
+@foreach (var item in Model.Ingredients)
+{
+
+    <p>@item.Quantity @item.Name</p>
+}
+
