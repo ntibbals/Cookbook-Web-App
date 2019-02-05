@@ -22,18 +22,60 @@ namespace Cookbook_Web_App.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string [] values = null;
+            IEnumerable<Recipe> values = null;
             //GetAsync takes in a string path. To get the API connection to work, run the API and replace this local host with your local host(keep api/values)
             //To test that this works, got to Search/Index
             //TODO: After deployment, change localhost to API path
-            HttpResponseMessage response = await client.GetAsync("http://localhost:50170/api/values");
+            HttpResponseMessage response = await client.GetAsync("https://cookbookapi20190205105239.azurewebsites.net/api/Recipes");
             if (response.IsSuccessStatusCode)
             {
-                values = await response.Content.ReadAsAsync<string[]>();
+                values = await response.Content.ReadAsAsync<IEnumerable<Recipe>>();
 
             }
 
             return View(values);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            Recipe recipe = new Recipe();
+            IEnumerable<Instructions> instructions = null;
+            IEnumerable<RecipeIngredients> recipeIngredients = null;
+            IEnumerable<Ingredients> ingredients = null;
+            if (id == null)
+            {
+                return NotFound();
+            }
+            HttpResponseMessage responseRecipe = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Recipes/{id}");
+            HttpResponseMessage responseInstructions = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Instructions");
+            HttpResponseMessage responseIngredients = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/RecipeIngredients");
+            HttpResponseMessage responseBaseIngredients = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Ingredients");
+
+            recipe = await responseRecipe.Content.ReadAsAsync<Recipe>();
+            instructions = await responseInstructions.Content.ReadAsAsync<IEnumerable<Instructions>>();
+
+            recipeIngredients = await responseIngredients.Content.ReadAsAsync<IEnumerable<RecipeIngredients>>();
+            var recipeIngredients2 = recipeIngredients.Where(i => i.recipeID == id);
+
+            ingredients = await responseBaseIngredients.Content.ReadAsAsync<IEnumerable<Ingredients>>();
+
+            foreach (var ing in recipeIngredients2)
+            {
+                foreach (var item in ingredients)
+                {
+                    if(item.ID == ing.ingredientsID)
+                    {
+                        item.Quantity = ing.quantity;
+                        item.RecipeID = ing.recipeID;
+                    }
+                }
+            }
+
+            recipe.Ingredients = ingredients.Where(i => i.RecipeID == id);
+
+
+            recipe.Instructions = instructions.Where(i => i.RecipeId == id);
+            return View(recipe);
         }
     }
 }
