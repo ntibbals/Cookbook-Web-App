@@ -1,5 +1,6 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Cookbook_Web_App.Controllers
 {
-    public class SavedRecipeController : Controller  
+    public class SavedRecipeController : Controller
     {
         private readonly CookbookDbContext _context;
 
@@ -21,6 +22,8 @@ namespace Cookbook_Web_App.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var name = HttpContext.Session.GetString("UserName");
+            User user = _context.User.FirstOrDefault(u => u.UserName == name);
             return View(await _context.SavedRecipe.ToListAsync());
         }
 
@@ -31,7 +34,8 @@ namespace Cookbook_Web_App.Controllers
             {
                 return NotFound();
             }
-
+            var name = HttpContext.Session.GetString("UserName");
+            User user = _context.User.FirstOrDefault(u => u.UserName == name);
             var savedRecipe = await _context.SavedRecipe
                 .FirstOrDefaultAsync(r => r.SavedRecipeID == id);
             if (savedRecipe == null)
@@ -39,7 +43,7 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            return View(savedRecipe);          
+            return View(savedRecipe);
         }
 
         //Create SavedRecipe
@@ -50,8 +54,10 @@ namespace Cookbook_Web_App.Controllers
 
         //Post
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("UserID,APIReference")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Create([Bind("UserID,APIReference,Name")] SavedRecipe savedRecipe)
         {
+            var name = HttpContext.Session.GetString("UserName");
+            User user = _context.User.FirstOrDefault(u => u.UserName == name);
             if (ModelState.IsValid)
             {
                 _context.Add(savedRecipe);
@@ -80,7 +86,7 @@ namespace Cookbook_Web_App.Controllers
 
         //Post: Edit SavedRecipe
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,APIReference")] SavedRecipe savedRecipe)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,APIReference,Name")] SavedRecipe savedRecipe)
         {
             if (id != savedRecipe.SavedRecipeID)
             {
@@ -108,7 +114,7 @@ namespace Cookbook_Web_App.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-  
+
             return View(savedRecipe);
         }
 
