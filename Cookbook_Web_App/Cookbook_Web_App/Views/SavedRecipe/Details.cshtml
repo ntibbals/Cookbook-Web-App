@@ -1,29 +1,37 @@
-﻿@model Cookbook_Web_App.Models.SavedRecipe
+﻿@model Cookbook_Web_App.Models.Recipe
 
 @{
     ViewData["Title"] = "Details";
 
     Layout = "_Layout";
 }
-
+@Model.ID
+@Model.Name
 <h1>My Recipes</h1>
 <div>
-    <h2>Details of @Model.SavedRecipeID</h2>
+    <h2>Details of @Model.Name</h2>
 
     <div>
+
         <div>
-            @Html.DisplayNameFor(model => model.SavedRecipeID) :
-            @Html.DisplayFor(model => model.SavedRecipeID)
+            @foreach (var item in Model.Instructions)
+            {
+
+                <p>@item.stepNumberID @item.action</p>
+            }
         </div>
         <div>
             @*@Html.DisplayNameFor(model => model.Instructions) :
-            @Html.DisplayFor(model => model.Instructions)*@
+                @Html.DisplayFor(model => model.Instructions)*@
         </div>
         <div>
-            @Html.DisplayNameFor(model => model.Comments) :
-            @Html.DisplayFor(model => model.Comments)
+            @foreach (var item in Model.Ingredients)
+            {
+
+                <p>@item.Quantity @item.Name</p>
+            }
         </div>
     </div>
-    </div>
+</div>
 <a asp-action="Index">Back to List</a>
 
