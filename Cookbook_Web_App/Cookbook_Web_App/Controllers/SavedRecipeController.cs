@@ -43,6 +43,7 @@ namespace Cookbook_Web_App.Controllers
                 return View(userRecipes);
             }
         }
+
         //Get SavedRecipe
         public async Task<IActionResult> Details(int? id)
         {
