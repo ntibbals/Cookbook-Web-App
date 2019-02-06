@@ -53,13 +53,13 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            var comment = await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
+            var comment = _context.Comments.Where(co => co.ID == id);
             if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(comment);
+            return View(await comment.ToListAsync());
         }
 
         //Get: Create User
