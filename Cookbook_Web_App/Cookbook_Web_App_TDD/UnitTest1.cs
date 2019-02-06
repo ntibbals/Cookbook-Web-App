@@ -315,6 +315,26 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal(1, recipeIngredients.recipeID);
         }
 
+        [Fact]
+        public void CanGetRecipeIngredientsIngredientsID()
+        {
+            RecipeIngredients recipeIngredients = new RecipeIngredients();
+            recipeIngredients.ingredientsID = 1;
+
+            Assert.Equal(1, recipeIngredients.ingredientsID);
+
+        }
+        [Fact]
+        public void CanSetRecipeIngredientsIngredientsID()
+        {
+            RecipeIngredients recipeIngredients = new RecipeIngredients();
+            recipeIngredients.ingredientsID = 2;
+            recipeIngredients.ingredientsID = 1;
+
+            Assert.Equal(1, recipeIngredients.ingredientsID);
+
+        }
+
 
 
 
