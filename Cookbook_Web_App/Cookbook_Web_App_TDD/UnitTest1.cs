@@ -16,6 +16,27 @@ namespace Cookbook_Web_App_TDD
 
         }
         [Fact]
+        public void CanGetSavedRecipeID()
+        {
+            SavedRecipe savedRecipe = new SavedRecipe();
+            savedRecipe.SavedRecipeID = 2;
+
+            Assert.Equal(2, savedRecipe.SavedRecipeID);
+
+        }
+
+        [Fact]
+        public void CanSetSavedRecipeID()
+        {
+            SavedRecipe savedRecipe = new SavedRecipe();
+            savedRecipe.SavedRecipeID = 1;
+            savedRecipe.SavedRecipeID = 2;
+
+            Assert.Equal(2, savedRecipe.SavedRecipeID);
+
+        }
+
+        [Fact]
         public void CanSetNameOfSavedRecipe()
         {
             SavedRecipe savedRecipe = new SavedRecipe();
@@ -29,9 +50,20 @@ namespace Cookbook_Web_App_TDD
         public void CanGetNameOfUser()
         {
             User user = new User();
-            user.User
+            user.UserName = "Guest34";
 
-            Assert.Equal();
+            Assert.Equal("Guest34", user.UserName);
+
+        }
+
+        [Fact]
+        public void CanSetNameOfUser()
+        {
+            User user = new User();
+            user.UserName = "Guest34";
+            user.UserName = "Guest12";
+
+            Assert.Equal("Guest12", user.UserName);
 
         }
     }
