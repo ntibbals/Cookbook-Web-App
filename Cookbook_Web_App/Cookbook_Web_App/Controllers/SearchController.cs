@@ -96,6 +96,7 @@ namespace Cookbook_Web_App.Controllers
 
             _context.Add(saveRecipe);
             await _context.SaveChangesAsync();
+            //HttpContext.Session.SetString("UserName", user.UserName);
             return RedirectToAction("Index", "SavedRecipe");
         }
 
