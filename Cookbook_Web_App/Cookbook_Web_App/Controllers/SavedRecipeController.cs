@@ -49,16 +49,16 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get SavedRecipe
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
+            SavedRecipe savedRecipe = _context.SavedRecipe.FirstOrDefault(r => r.SavedRecipeID == id);
+            int iD = savedRecipe.APIReference;
+
             Recipe recipe = new Recipe();
             IEnumerable<Instructions> instructions = null;
             IEnumerable<RecipeIngredients> recipeIngredients = null;
             IEnumerable<Ingredients> ingredients = null;
-            if (id == null)
-            {
-                return NotFound();
-            }
+
 
             HttpResponseMessage responseRecipe = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Recipes/{id}");
             HttpResponseMessage responseInstructions = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Instructions");
@@ -68,7 +68,7 @@ namespace Cookbook_Web_App.Controllers
             recipe = await responseRecipe.Content.ReadAsAsync<Recipe>();
             instructions = await responseInstructions.Content.ReadAsAsync<IEnumerable<Instructions>>();
             recipeIngredients = await responseIngredients.Content.ReadAsAsync<IEnumerable<RecipeIngredients>>();
-            var ingredientQuery = recipeIngredients.Where(r => r.recipeID == id);
+            var ingredientQuery = recipeIngredients.Where(r => r.recipeID == iD);
 
             ingredients = await responseBaseIngredients.Content.ReadAsAsync<IEnumerable<Ingredients>>();
             foreach (var ing in ingredientQuery)
@@ -82,9 +82,9 @@ namespace Cookbook_Web_App.Controllers
                     }
                 }
             }
-            recipe.Ingredients = ingredients.Where(ri => ri.RecipeID == id);
-            recipe.Instructions = instructions.Where(ri => ri.RecipeId== id);
-
+            recipe.Ingredients = ingredients.Where(ri => ri.RecipeID == iD);
+            recipe.Instructions = instructions.Where(ri => ri.RecipeId== iD);
+            HttpContext.Session.SetInt32("CommentsID", id);
             return View(recipe);
         }
 
@@ -145,6 +145,10 @@ namespace Cookbook_Web_App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult RedirectToDetails(int id)
+        {
+            return RedirectToAction("View", "Comments");
+        }
 
         private bool SavedRecipeExists(int id)
         {

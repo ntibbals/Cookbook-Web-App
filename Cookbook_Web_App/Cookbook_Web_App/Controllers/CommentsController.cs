@@ -1,5 +1,6 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,7 +51,11 @@ namespace Cookbook_Web_App.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                id = HttpContext.Session.GetInt32("CommentsID");
+                if (id == null)
+                {
+                    return NotFound();
+                }
             }
 
             var comment = _context.Comments.Where(co => co.SavedRecipeID == id);

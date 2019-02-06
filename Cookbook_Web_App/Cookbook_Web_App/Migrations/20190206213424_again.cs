@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cookbook_Web_App.Migrations
 {
-    public partial class commentapi : Migration
+    public partial class again : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
