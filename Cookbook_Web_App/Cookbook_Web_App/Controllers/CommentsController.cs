@@ -107,7 +107,7 @@ namespace Cookbook_Web_App.Controllers
 
             var comment = await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
             
-            if(User == null)
+            if(comment == null)
             {
                 return NotFound();
             }
@@ -122,7 +122,7 @@ namespace Cookbook_Web_App.Controllers
         /// <param name="comments">comment object</param>
         /// <returns>view</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ID, SavedRecipeID")] Comments comments)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,SavedRecipeID,Comment")] Comments comments)
         {
             if(id != comments.ID)
             {
