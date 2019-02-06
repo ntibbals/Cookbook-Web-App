@@ -11,6 +11,7 @@ namespace Cookbook_Web_App.Models
     {
         public int ID { get; set; }
         public int SavedRecipeID { get; set; }
+        public int APIReference { get; set; }
         [Column(TypeName ="varchar(max)")]
         [MaxLength]
         public string Comment { get; set; }

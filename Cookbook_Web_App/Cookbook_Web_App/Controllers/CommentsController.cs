@@ -53,7 +53,7 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            var comment = _context.Comments.Where(co => co.ID == id);
+            var comment = _context.Comments.Where(co => co.SavedRecipeID == id);
             if (comment == null)
             {
                 return NotFound();
