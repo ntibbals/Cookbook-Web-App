@@ -32,7 +32,7 @@ namespace Cookbook_Web_App.Controllers
             User user = _context.User.FirstOrDefault(u => u.UserName == userInput);
             if (user != null)
             {
-
+                
                 HttpContext.Session.SetString("UserName", user.UserName);
                 return RedirectToAction(nameof(Index), user);
             }
@@ -69,6 +69,14 @@ namespace Cookbook_Web_App.Controllers
         {
             if (ModelState.IsValid)
             {
+                var users = await _context.User.ToListAsync();
+                foreach (var u in users)
+                {
+                    if (u.UserName == user.UserName)
+                    {                        
+                        return RedirectToAction(nameof(Create2));
+                    }
+                }
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 HttpContext.Session.SetString("UserName", user.UserName);
@@ -176,6 +184,39 @@ namespace Cookbook_Web_App.Controllers
         private bool UserExists(int id)
         {
             return _context.User.Any(u => u.ID == id);
+        }
+
+
+        //--------------------------------------------//
+        //Get: Create User
+        [HttpGet]
+        public IActionResult Create2()
+        {
+            return View();
+        }
+
+        //POST: create user
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create2([Bind("ID,UserName")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var users = await _context.User.ToListAsync();
+                foreach (var u in users)
+                {
+                    if (u.UserName == user.UserName)
+                    {
+                        return RedirectToAction(nameof(Create2));
+                    }
+                }
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                HttpContext.Session.SetString("UserName", user.UserName);
+                return RedirectToAction(nameof(Index), user);
+            }
+
+            return View(Index());
         }
     }
 }
