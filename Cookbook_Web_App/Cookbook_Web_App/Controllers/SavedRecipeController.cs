@@ -30,6 +30,10 @@ namespace Cookbook_Web_App.Controllers
             {
                 var name = HttpContext.Session.GetString("UserName");
                 User user = _context.User.FirstOrDefault(u => u.UserName == name);
+                if (user == null)
+                {
+                    return RedirectToAction("Index", "User");
+                }
                 var recipes = await _context.SavedRecipe.ToListAsync();
                 var userRecipes = recipes.Where(r => r.UserID == user.ID);
                 return View(userRecipes);
