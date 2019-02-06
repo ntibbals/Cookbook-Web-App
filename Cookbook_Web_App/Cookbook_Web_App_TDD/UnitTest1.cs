@@ -215,6 +215,47 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal(2, instructions.RecipeId);
 
         }
+        [Fact]
+        public void CanGetInstructionsStepNumberID()
+        {
+            Instructions instructions = new Instructions();
+            instructions.stepNumberID = 1;
+
+            Assert.Equal(1, instructions.stepNumberID);
+
+        }
+        [Fact]
+        public void CanSetInstructionsStepNumberID()
+        {
+            Instructions instructions = new Instructions();
+            instructions.stepNumberID = 1;
+            instructions.stepNumberID = 2;
+
+            Assert.Equal(2, instructions.stepNumberID);
+
+        }
+        [Fact]
+        public void CanGetInstructionsAction()
+        {
+            Instructions instructions = new Instructions();
+            instructions.action = "Pour";
+
+            Assert.Equal("Pour", instructions.action);
+        }
+        [Fact]
+        public void CanSetInstructionsAction()
+        {
+            Instructions instructions = new Instructions();
+            instructions.action = "Sprinkle";
+            instructions.action = "Pour";
+
+            Assert.Equal("Pour", instructions.action);
+        }
+
+
+
+
+
 
 
 
