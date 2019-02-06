@@ -353,6 +353,27 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal("1 cup", recipeIngredients.quantity);
         }
 
+        [Fact]
+        public void CanGetCommentsID()
+        {
+            Comments comments = new Comments();
+            comments.ID = 1;
+
+            Assert.Equal(1, comments.ID);
+
+        
+
+        [Fact]
+        public void CanSetCommentsID()
+        {
+            Comments comments = new Comments();
+            comments.ID = 2;
+            comments.ID = 1;
+
+            Assert.Equal(1, comments.ID);
+
+        }
+
 
 
 
