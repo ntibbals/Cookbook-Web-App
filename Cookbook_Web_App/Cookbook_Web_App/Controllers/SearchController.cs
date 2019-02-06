@@ -22,7 +22,7 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchRecipes)
         {
             IEnumerable<Recipe> values = null;
             //GetAsync takes in a string path. To get the API connection to work, run the API and replace this local host with your local host(keep api/values)
@@ -32,7 +32,7 @@ namespace Cookbook_Web_App.Controllers
             if (response.IsSuccessStatusCode)
             {
                 values = await response.Content.ReadAsAsync<IEnumerable<Recipe>>();
-
+                values = values.Where(r => r.Name.ToLower().Contains(searchRecipes.ToLower())).ToList();
             }
 
             return View(values);

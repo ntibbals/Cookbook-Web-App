@@ -139,7 +139,7 @@ namespace Cookbook_Web_App.Controllers
         //Get Delete user
         public async Task<IActionResult> Delete(int id)
         {
-            var user = _context.User.FirstOrDefault(u => u.ID == id);
+            var user = await _context.User.FirstOrDefaultAsync(u => u.ID == id);
             if (user == null)
             {
                 return NotFound();
