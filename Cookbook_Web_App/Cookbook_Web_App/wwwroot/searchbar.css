@@ -1,0 +1,16 @@
+﻿.search-bar{
+    outline: 2px solid green;
+    box-sizing: border-box;
+}
+
+.search-input {
+    box-sizing: border-box;
+    margin-right: 0%;
+    width: 50%;
+    margin-left: 17%;
+}
+
+.search-button {
+    box-sizing: border-box;
+    width: 10%;
+}

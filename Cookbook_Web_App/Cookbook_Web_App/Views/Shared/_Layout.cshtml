@@ -6,6 +6,7 @@
     <link href="~/reset.css" rel="stylesheet" />
     <link href="~/StyeSheet.css" rel="stylesheet" />
     <link href="~/Header.css" rel="stylesheet" />
+    <link href="~/searchbar.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
@@ -36,13 +37,15 @@
         </div>
     </header>
     <main>
-        <form asp-controller="Search" asp-action="Index">
+        <form asp-controller="Search" asp-action="Index" class="search-bar">
             <p>
-                <input type="text" name="searchRecipes" placeholder="Search recipes by name">
-                <input type="submit" value="Filter" />
+                <input type="text" name="searchRecipes" placeholder="Search recipes by name" class="search-input">
+                <input type="submit" value="Filter" class="search-button" />
             </p>
         </form>
-        @RenderBody()
+        <section class="page-holder">
+            @RenderBody()
+        </section>
     </main>
     <footer class="page-footer font-small blue solid">
         <div class="footer-copyright text-center py-3">
