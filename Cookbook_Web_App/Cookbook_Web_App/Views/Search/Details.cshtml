@@ -1,15 +1,32 @@
 ﻿@model Cookbook_Web_App.Models.Recipe
 
-@Model.ID
-@Model.Name
-@foreach (var item in Model.Instructions)
-{
+<div>
+    <h1>@Model.Name</h1>
+    </div>
+<form asp-action="Save">
+    <div asp-validation-summary="ModelOnly"></div>
+    <h2>Instructions:</h2>
+    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="Name" />
+    @foreach (var item in Model.Instructions)
+    {
+        <div>
+            <input type="hidden" asp-for="Instructions" />
+            <p>@item.stepNumberID @item.action</p>
+        </div>
+    }
+    <h2>Ingredients:</h2>
+    @foreach (var item in Model.Ingredients)
+    {
+        <div>
+            <input type="hidden" asp-for="Ingredients" />
+            <p>@item.Quantity @item.Name</p>
+        </div>
+    }
 
-    <p>@item.stepNumberID @item.action</p>
-}
-@foreach (var item in Model.Ingredients)
-{
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
 
-    <p>@item.Quantity @item.Name</p>
-}
 

@@ -1,6 +1,8 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,5 +79,25 @@ namespace Cookbook_Web_App.Controllers
             recipe.Instructions = instructions.Where(i => i.RecipeId == id);
             return View(recipe);
         }
+
+        public async Task<IActionResult> Save([Bind("SavedRecipeID,UserID,APIReference,Name")]int id, string name)
+        {
+            //if (id != null)
+            //{
+            //    return NotFound();
+            //}
+            var userName = HttpContext.Session.GetString("UserName");
+            User user = await _context.User.FirstOrDefaultAsync(u => u.UserName == userName);
+
+            SavedRecipe saveRecipe = new SavedRecipe();
+            saveRecipe.UserID = user.ID;
+            saveRecipe.APIReference = id;
+            saveRecipe.Name = name;
+
+            _context.Add(saveRecipe);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "SavedRecipe");
+        }
+
     }
 }

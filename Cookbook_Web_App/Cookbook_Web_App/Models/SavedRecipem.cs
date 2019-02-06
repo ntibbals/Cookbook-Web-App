@@ -15,5 +15,6 @@ namespace Cookbook_Web_App.Models
         //Navigation Properties
         public ICollection<Comments> Comments { get; set; }
         public User User { get; set; }
+
     }
 }

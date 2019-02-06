@@ -24,15 +24,25 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string userName)
         {
-            var name = HttpContext.Session.GetString("UserName");
-            User user = _context.User.FirstOrDefault(u => u.UserName == name);
-            var recipes = await _context.SavedRecipe.ToListAsync();
-            var userRecipes = recipes.Where(r => r.UserID == user.ID);
-            return View(userRecipes);
+            if (userName == null)
+            {
+                var name = HttpContext.Session.GetString("UserName");
+                User user = _context.User.FirstOrDefault(u => u.UserName == name);
+                var recipes = await _context.SavedRecipe.ToListAsync();
+                var userRecipes = recipes.Where(r => r.UserID == user.ID);
+                return View(userRecipes);
+            }
+            else
+            {
+                var name = userName;
+                User user = _context.User.FirstOrDefault(u => u.UserName == name);
+                var recipes = await _context.SavedRecipe.ToListAsync();
+                var userRecipes = recipes.Where(r => r.UserID == user.ID);
+                return View(userRecipes);
+            }
         }
-
         //Get SavedRecipe
         public async Task<IActionResult> Details(int? id)
         {
