@@ -24,6 +24,8 @@ namespace Cookbook_Web_App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("APIReference");
+
                     b.Property<string>("Comment")
                         .HasColumnType("varchar(max)");
 

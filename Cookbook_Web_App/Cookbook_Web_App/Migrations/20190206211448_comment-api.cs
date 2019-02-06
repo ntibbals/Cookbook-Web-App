@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cookbook_Web_App.Migrations
 {
-    public partial class initialcomment : Migration
+    public partial class commentapi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,7 @@ namespace Cookbook_Web_App.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SavedRecipeID = table.Column<int>(nullable: false),
+                    APIReference = table.Column<int>(nullable: false),
                     Comment = table.Column<string>(type: "varchar(max)", nullable: true)
                 },
                 constraints: table =>

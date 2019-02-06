@@ -10,6 +10,7 @@ namespace Cookbook_Web_App.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public IEnumerable<Comments> Comment { get; set; }
         public IEnumerable<Instructions> Instructions { get; set; }
         public IEnumerable<Ingredients> Ingredients { get; set; }
     }
