@@ -132,5 +132,74 @@ namespace Cookbook_Web_App_TDD
 
         }
 
+        [Fact]
+        public void CanGetIngredientsName()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.Name = "Potato";
+
+            Assert.Equal("Potato", ingredients.Name);
+
+        }
+
+        [Fact]
+        public void CanSetIngredientsName()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.Name = "Potato";
+            ingredients.Name = "Tomato";
+
+            Assert.Equal("Tomato", ingredients.Name);
+
+        }
+
+        [Fact]
+        public void CanGetIngredientsQuantity()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.Quantity = "1 cup";
+
+            Assert.Equal("1 cup", ingredients.Quantity);
+
+        }
+
+        [Fact]
+        public void CanSetIngredientsQuantity()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.Quantity = "1 cup";
+            ingredients.Quantity = "2 cups";
+
+            Assert.Equal("2 cups", ingredients.Quantity);
+
+        }
+
+        [Fact]
+        public void CanSetIngredientsRecipeID()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.RecipeID = 1;
+            ingredients.RecipeID = 2;
+
+            Assert.Equal(2, ingredients.RecipeID);
+
+        }
+
+        [Fact]
+        public void CanGetIngredientsRecipeID()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.RecipeID = 1;
+
+            Assert.Equal(1, ingredients.RecipeID);
+
+        }
+
+
+
+
+
+
+
     }
 }
