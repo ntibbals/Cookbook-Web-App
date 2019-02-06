@@ -296,6 +296,24 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal("Chicken Alfredo", recipe.Name);
 
         }
+        [Fact]
+        public void CanGetRecipeIngredientsRecipeID()
+        {
+            RecipeIngredients recipeIngredients = new RecipeIngredients();
+            recipeIngredients.recipeID = 1;
+
+            Assert.Equal(1, recipeIngredients.recipeID);
+        }
+
+        [Fact]
+        public void CanSetRecipeIngredientsRecipeID()
+        {
+            RecipeIngredients recipeIngredients = new RecipeIngredients();
+            recipeIngredients.recipeID = 2;
+            recipeIngredients.recipeID = 1;
+
+            Assert.Equal(1, recipeIngredients.recipeID);
+        }
 
 
 
