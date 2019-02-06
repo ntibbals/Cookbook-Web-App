@@ -1,0 +1,26 @@
+﻿/*Search Bar*/
+
+.search-bar{
+    box-sizing: border-box;
+}
+
+.search-input {
+    box-sizing: border-box;
+    margin-right: 0%;
+    width: 50%;
+    margin-left: 17%;
+}
+
+.search-button {
+    box-sizing: border-box;
+    width: 10%;
+}
+
+
+/*Buttons*/
+input button {
+    box-sizing: border-box;
+    border: none;
+    background-color: blue;
+    color: white;
+}

@@ -1,8 +1,11 @@
 ﻿@model Cookbook_Web_App.Models.Recipe
-
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
 <div>
     <h1>@Model.Name</h1>
-    </div>
+</div>
 <form asp-action="Save">
     <div asp-validation-summary="ModelOnly"></div>
     <h2>Instructions:</h2>
