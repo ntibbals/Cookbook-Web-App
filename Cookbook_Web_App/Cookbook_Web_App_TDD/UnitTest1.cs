@@ -195,6 +195,27 @@ namespace Cookbook_Web_App_TDD
 
         }
 
+        [Fact]
+        public void CanGetInstructionsRecipeId()
+        {
+            Instructions instructions = new Instructions();
+            instructions.RecipeId = 1;
+
+            Assert.Equal(1, instructions.RecipeId);
+
+        }
+
+        [Fact]
+        public void CanSetInstructionsRecipeId()
+        {
+            Instructions instructions = new Instructions();
+            instructions.RecipeId = 1;
+            instructions.RecipeId = 2;
+
+            Assert.Equal(2, instructions.RecipeId);
+
+        }
+
 
 
 
