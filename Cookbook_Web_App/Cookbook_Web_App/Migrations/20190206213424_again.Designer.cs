@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190206193432_initial")]
-    partial class initial
+    [Migration("20190206213424_again")]
+    partial class again
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,8 @@ namespace Cookbook_Web_App.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("APIReference");
 
                     b.Property<string>("Comment")
                         .HasColumnType("varchar(max)");

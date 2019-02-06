@@ -33,8 +33,8 @@
         </div>
     </div>
 </div>
-@Html.ActionLink("SavedRecipeID", "View", "Comments")
-<a asp-action="~/Views/Comments/View.cshtml" asp-route-id="Model.ID">Recipe Notes</a>
-
-<a asp-action="Index">Back to List</a>
+<form asp-action="RedirectToDetails" >
+    <input type="hidden" value="SavedRecipeID" asp-for="ID" />
+    <input type="submit" value="View Notes"/>
+</form>
 
