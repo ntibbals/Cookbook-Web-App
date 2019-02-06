@@ -1,6 +1,6 @@
-﻿@model Cookbook_Web_App.Models.Comments
+﻿@model IEnumerable<Cookbook_Web_App.Models.Comments>
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "View";
     Layout = "_Layout";
 }
 <h1>Comments</h1>
@@ -9,10 +9,12 @@
     <div>
 
         <div>
-            @foreach (var item in Model.Comment)
+            @foreach (var item in Model)
             {
 
-                <span>@item</span>
+                <div>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </div>
 
             }
         </div>
