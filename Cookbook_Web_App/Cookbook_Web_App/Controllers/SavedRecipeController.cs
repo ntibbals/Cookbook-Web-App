@@ -105,56 +105,6 @@ namespace Cookbook_Web_App.Controllers
             return View(savedRecipe);
         }
 
-        //Edit SavedRecipe
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var savedRecipe = await _context.SavedRecipe.FindAsync(id);
-            if (savedRecipe == null)
-            {
-                return NotFound();
-            }
-            return View(savedRecipe);
-        }
-
-        //Post: Edit SavedRecipe
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("SavedRecipeID,UserID,APIReference,Name")] SavedRecipe savedRecipe)
-        {
-            if (id != savedRecipe.SavedRecipeID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(savedRecipe);
-                    await _context.SaveChangesAsync();
-
-                }
-                catch (Exception)
-                {
-                    if (!SavedRecipeExists(savedRecipe.SavedRecipeID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View(savedRecipe);
-        }
-
         //Get Delete SavedRecipe
         public async Task<IActionResult> Delete(int? id)
         {
