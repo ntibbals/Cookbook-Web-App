@@ -32,6 +32,12 @@ namespace Cookbook_Web_App.Controllers
             if (response.IsSuccessStatusCode)
             {
                 values = await response.Content.ReadAsAsync<IEnumerable<Recipe>>();
+
+                if (String.IsNullOrEmpty(searchRecipes))
+                {
+                    return View(values.ToList());
+                }
+
                 values = values.Where(r => r.Name.ToLower().Contains(searchRecipes.ToLower())).ToList();
             }
 
