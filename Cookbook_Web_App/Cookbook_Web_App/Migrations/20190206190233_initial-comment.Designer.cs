@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190206000030_comments-two")]
-    partial class commentstwo
+    [Migration("20190206190233_initial-comment")]
+    partial class initialcomment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

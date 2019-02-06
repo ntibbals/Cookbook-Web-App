@@ -46,6 +46,21 @@ namespace Cookbook_Web_App.Controllers
             return View(comment);
         }
 
+        public async Task<IActionResult> View(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var comment = await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            return View(comment);
+        }
 
         //Get: Create User
         public IActionResult Create()
