@@ -274,6 +274,30 @@ namespace Cookbook_Web_App_TDD
 
         }
 
+        [Fact]
+        public void CanGetRecipeName()
+        {
+
+            Recipe recipe = new Recipe();
+            recipe.Name = "Chicken Alfredo";
+
+            Assert.Equal("Chicken Alfredo", recipe.Name);
+
+        }
+
+        [Fact]
+        public void CanSetRecipeName()
+        {
+
+            Recipe recipe = new Recipe();
+            recipe.Name = "ChickenParm";
+            recipe.Name = "Chicken Alfredo";
+
+            Assert.Equal("Chicken Alfredo", recipe.Name);
+
+        }
+
+
 
 
 
