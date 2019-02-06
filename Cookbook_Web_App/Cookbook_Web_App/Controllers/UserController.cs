@@ -75,7 +75,7 @@ namespace Cookbook_Web_App.Controllers
                 return RedirectToAction(nameof(Index), user);
             }
 
-            return View(Index());
+            return RedirectToAction("Index");
         }
 
         //Get: Edit user

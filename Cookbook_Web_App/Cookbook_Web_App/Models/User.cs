@@ -11,8 +11,8 @@ namespace Cookbook_Web_App.Models
         //PrimaryKey
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(25)]
+       
+        [StringLength(25), Required(ErrorMessage ="Cannot be more than 25 characters")]
         public string UserName { get; set; }
 
 

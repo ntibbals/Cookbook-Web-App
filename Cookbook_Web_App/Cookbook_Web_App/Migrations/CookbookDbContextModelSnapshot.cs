@@ -53,15 +53,6 @@ namespace Cookbook_Web_App.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("SavedRecipe");
-
-                    b.HasData(
-                        new
-                        {
-                            SavedRecipeID = 11,
-                            APIReference = 22,
-                            Name = "Fruit Loops",
-                            UserID = 1
-                        });
                 });
 
             modelBuilder.Entity("Cookbook_Web_App.Models.User", b =>
