@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cookbook_Web_App", "Cookbook_Web_App\Cookbook_Web_App.csproj", "{F8300827-7899-4D2D-A9DB-AB82BB931621}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cookbook_Web_App", "Cookbook_Web_App\Cookbook_Web_App.csproj", "{F8300827-7899-4D2D-A9DB-AB82BB931621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cookbook_Web_App_TDD", "Cookbook_Web_App_TDD\Cookbook_Web_App_TDD.csproj", "{B54AC51F-646D-4B6F-9EAE-C3634092E25A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cookbook_Web_App_TDD", "Cookbook_Web_App_TDD\Cookbook_Web_App_TDD.csproj", "{B54AC51F-646D-4B6F-9EAE-C3634092E25A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
