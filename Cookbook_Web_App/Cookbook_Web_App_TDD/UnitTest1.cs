@@ -111,5 +111,26 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal("Guest12", user.UserName);
 
         }
+
+        [Fact]
+        public void CanGetIngredientsID()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.ID = 1;
+
+            Assert.Equal(1, ingredients.ID);
+
+        }
+        [Fact]
+        public void CanSetIngredientsID()
+        {
+            Ingredients ingredients = new Ingredients();
+            ingredients.ID = 1;
+            ingredients.ID = 2;
+
+            Assert.Equal(2, ingredients.ID);
+
+        }
+
     }
 }
