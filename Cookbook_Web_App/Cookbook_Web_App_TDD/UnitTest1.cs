@@ -334,6 +334,24 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal(1, recipeIngredients.ingredientsID);
 
         }
+        [Fact]
+        public void CanGetRecipeIngredientsQuantity()
+        {
+            RecipeIngredients recipeIngredients = new RecipeIngredients();
+            recipeIngredients.quantity = "1 cup";
+
+            Assert.Equal("1 cup", recipeIngredients.quantity);
+        }
+
+        [Fact]
+        public void CanSetRecipeIngredientsQuantity()
+        {
+            RecipeIngredients recipeIngredients = new RecipeIngredients();
+            recipeIngredients.quantity = "2 cups";
+            recipeIngredients.quantity = "1 cup";
+
+            Assert.Equal("1 cup", recipeIngredients.quantity);
+        }
 
 
 
