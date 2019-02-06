@@ -360,9 +360,9 @@ namespace Cookbook_Web_App_TDD
             comments.ID = 1;
 
             Assert.Equal(1, comments.ID);
+        }
 
         
-
         [Fact]
         public void CanSetCommentsID()
         {
@@ -373,6 +373,51 @@ namespace Cookbook_Web_App_TDD
             Assert.Equal(1, comments.ID);
 
         }
+
+        [Fact]
+        public void CanGetCommentsSavedRecipeID()
+        {
+            Comments comments = new Comments();
+            comments.SavedRecipeID = 1;
+
+            Assert.Equal(1, comments.SavedRecipeID);
+
+        }
+
+        [Fact]
+        public void CanSetCommentsSavedRecipeID()
+        {
+            Comments comments = new Comments();
+            comments.SavedRecipeID = 2;
+            comments.SavedRecipeID = 1;
+
+            Assert.Equal(1, comments.SavedRecipeID);
+
+        }
+
+        [Fact]
+        public void CanGetCommentsComment()
+        {
+            Comments comments = new Comments();
+            comments.Comment = "Hello World";
+
+
+            Assert.Equal("Hello World", comments.Comment);
+
+        }
+        [Fact]
+        public void CanSetCommentsComment()
+        {
+            Comments comments = new Comments();
+            comments.Comment = "Bye World";
+            comments.Comment = "Hello World";
+
+
+            Assert.Equal("Hello World", comments.Comment);
+
+        }
+
+
 
 
 
