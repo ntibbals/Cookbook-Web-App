@@ -129,6 +129,12 @@ namespace Cookbook_Web_App.Controllers
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             var savedRecipe = await _context.SavedRecipe.FirstAsync(s => s.SavedRecipeID == id);
+            var comments = await _context.Comments.ToListAsync();
+            var userComments = comments.Where(c => c.SavedRecipeID == id);
+            foreach (var item in userComments)
+            {
+                _context.Comments.Remove(item);
+            }
             _context.SavedRecipe.Remove(savedRecipe);
 
             await _context.SaveChangesAsync();
