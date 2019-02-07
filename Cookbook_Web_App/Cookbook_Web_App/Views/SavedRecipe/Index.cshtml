@@ -6,7 +6,7 @@
     Layout = "_Layout";
 }
 
-<h1>My Recipes</h1>
+<h3>My Recipes</h3>
 <div>
 
     <table>
@@ -14,16 +14,19 @@
 
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.SavedRecipeID)
+                    ID
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Comments)
+                    Comments
                 </th>
                 <th>
-                    Adjust
+                    
+                </th>
+                <th>
+
                 </th>
             </tr>
         </thead>
@@ -42,6 +45,8 @@
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.SavedRecipeID">Details of a Recipe</a>
+                </td>
+                <td>
                     <a asp-action="Delete" asp-route-id="@item.SavedRecipeID">Delete a Recipe</a>
                 </td>
             </tr>

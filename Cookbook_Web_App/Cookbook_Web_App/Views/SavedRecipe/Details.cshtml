@@ -5,26 +5,17 @@
 
     Layout = "_Layout";
 }
-<h1>My Recipes</h1>
+
 <div>
-    <h2>@Model.Name</h2>
+    <h3>@Model.Name</h3>
     <form asp-action="RedirectToDetails">
         <input type="hidden" value="SavedRecipeID" asp-for="ID" />
-        <input type="submit" value="View Notes" />
+        <input type="submit" value="View Notes" class="input-button" />
     </form>
     <img src="@Model.Image" class="img-rounded" alt="">
     <div>
-        <div>
-            @foreach (var item in Model.Instructions)
-            {
 
-                <p>@item.stepNumberID @item.action</p>
-            }
-        </div>
-        <div>
-            @*@Html.DisplayNameFor(model => model.Instructions) :
-                @Html.DisplayFor(model => model.Instructions)*@
-        </div>
+        <h4>Ingredients</h4>
         <div>
             @foreach (var item in Model.Ingredients)
             {
@@ -32,10 +23,23 @@
                 <p>@item.Quantity @item.Name</p>
             }
         </div>
+        <h4> Instructions </h4>
+
+        <div>
+            @foreach (var item in Model.Instructions)
+            {
+
+                <p>@item.stepNumberID) @item.action</p>
+            }
+        </div>
+        <div>
+            @*@Html.DisplayNameFor(model => model.Instructions) :
+                @Html.DisplayFor(model => model.Instructions)*@
+        </div>
     </div>
 </div>
 <form asp-action="RedirectToDetails" >
     <input type="hidden" value="SavedRecipeID" asp-for="ID" />
-    <input type="submit" value="View Notes"/>
+    <input type="submit" value="View Notes" class="input-button"/>
 </form>
 

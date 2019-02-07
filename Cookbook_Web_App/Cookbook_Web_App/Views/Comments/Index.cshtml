@@ -16,11 +16,17 @@
 
     <div>
         @Html.DisplayFor(modelItem => item.Comment)
+        </div>
+    <div>
+        @Html.DisplayFor(modelItem => item.Name)
+    </div>
+    <div>
         <form>
             @Html.ActionLink("Edit", "Edit", new { item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { item.ID }) |
+            @*<a href="/SavedRecipe/Details/{item.savedRecipeID}">Details</a>*@
 
-            <input type="submit" formaction="@Url.Action("RedirectToSave")" value="View Recipe" class="btn btn-primary" />
+            <input type="submit" formaction="@Url.Action("RedirectToSave")" value="View Recipe" class="input-button" />
         </form>
     </div>
 
