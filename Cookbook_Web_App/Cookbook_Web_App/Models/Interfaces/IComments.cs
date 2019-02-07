@@ -13,7 +13,7 @@ namespace Cookbook_Web_App.Models.Interfaces
         Task<Comments> GetSavedComments(int id);
         Task<IEnumerable<Comments>> GetComments();
 
-        Task UpdateComment(Comments comment);
+        Task GetComments(Comments comment);
 
         Task Delete(int id);
     }

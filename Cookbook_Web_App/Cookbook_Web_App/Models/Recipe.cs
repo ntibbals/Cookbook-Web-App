@@ -9,6 +9,7 @@ namespace Cookbook_Web_App.Models
     public class Recipe
     {
         public int ID { get; set; }
+        public string Image { get; set; }
         public string Name { get; set; }
         public IEnumerable<Comments> Comment { get; set; }
         public IEnumerable<Instructions> Instructions { get; set; }

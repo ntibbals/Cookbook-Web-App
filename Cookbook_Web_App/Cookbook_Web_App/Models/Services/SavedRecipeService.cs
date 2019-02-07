@@ -42,6 +42,7 @@ namespace Cookbook_Web_App.Models.Services
             _context.SavedRecipe.Remove(savedRecipe);
             await _context.SaveChangesAsync();
         }
+
         //confirm existence
         public bool SavedRecipeExists(int id)
         {
