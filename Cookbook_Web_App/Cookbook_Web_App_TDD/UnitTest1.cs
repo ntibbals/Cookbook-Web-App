@@ -694,6 +694,27 @@ namespace Cookbook_Web_App_TDD
         }
 
         [Fact]
+        public async void CanReadUserAsync()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanReadUserAsync").Options;
+            using (CookbookDbContext context = new CookbookDbContext(options))
+            {
+                User user = new User();
+                user.ID = 1;
+                user.UserName = "ImCool23";
+
+                UserService userService = new UserService(context);
+
+                await userService.CreateUser(user);
+                await userService.GetUsersAsync();
+
+                var result = context.User.FirstOrDefault(u => u.ID == u.ID);
+
+                Assert.Equal(user, result);
+            }
+        }
+
+        [Fact]
         public async void CanUpdateUser()
         {
             DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanUpdateUser").Options;
@@ -736,15 +757,6 @@ namespace Cookbook_Web_App_TDD
                 Assert.Null(result);
             }
         }
-
-
-
-
-
-
-
-
-
 
     }
 }
