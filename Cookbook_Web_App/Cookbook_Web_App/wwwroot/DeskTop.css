@@ -1,5 +1,9 @@
 ﻿@media screen and (min-width: 760px) {
 
+    body {
+        background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');
+        background-size: cover;
+    }
 
     header {
         position: fixed;
@@ -7,7 +11,7 @@
         top:0px;
         left:0px;
         padding-top: .5vw;
-        background-color: white;
+        background-color: none;
         box-sizing: border-box;
     }
     h1 {
@@ -69,8 +73,8 @@
 
     nav {
         min-height: 100vh;
-        background-color: lightgrey;
-        width: 20vw;
+        background-color: #CCDFE5;
+        width: 14vw;
         position: fixed;
         left: 0px;
         top: 0px;
@@ -78,7 +82,7 @@
           
     main {
         position: absolute;
-        left: 20vw;
+        left: 14vw;
         top: 18vh;
         z-index: -1;
         height: inherit;
@@ -88,23 +92,23 @@
 
 
     footer {
-        position: static;
-        margin-left: 20vw;
+        position: absolute;
+        bottom: 0;
+        margin-left: 14vw;
         width: 80vw;
-        background-color: blue;
+        background-color: powderblue;
     }
 
     footer p {
         text-align: center;
     }
     .page-holder {
-        background-color: #a8a8a8;
+        background-color: white;
         min-height: 50vh;
         width: 60vw;
-        margin-left: 10vw;
-        margin-right: 10vw;
+        margin-left: auto;
+        margin-right: auto;
         padding: 2vw;
         margin-top: 6vh;
         margin-bottom: 5vh;
     }
-}
