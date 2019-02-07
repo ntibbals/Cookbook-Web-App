@@ -18,10 +18,10 @@
     {
 
     <div>
-        @Html.DisplayFor(modelItem => item.Comment)
+        <p>Note: @Html.DisplayFor(modelItem => item.Comment)</p>
         </div>
     <div>
-        @Html.DisplayFor(modelItem => item.Name)
+        <p>Recipe Name: @Html.DisplayFor(modelItem => item.Name)</p>
     </div>
     <div>
         <form>
@@ -29,7 +29,7 @@
             @Html.ActionLink("Delete", "Delete", new { item.ID }) |
         </form>
         <form asp-controller="SavedRecipe" asp-action="Details" asp-route-id="@item.SavedRecipeID" style="display:inline">
-            <input type="submit" value="View Recipe" class="btn btn-primary" />
+            <input type="submit" value="View Recipe" class="input-button" />
         </form>
     </div>
 
