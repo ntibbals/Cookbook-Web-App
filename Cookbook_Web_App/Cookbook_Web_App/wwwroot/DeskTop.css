@@ -1,0 +1,113 @@
+﻿@media screen and (min-width: 760px) {
+
+
+    header {
+        position: fixed;
+        width: 100vw;
+        top:0px;
+        left:0px;
+        background-color: #353535;
+        font-size: 6vw;
+        padding-top: .5vw;
+        font-family: 'VT323', monospace;
+        z-index: 1;
+    }
+    h1 {
+        text-align: right;
+        margin-right: 10vw;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+        transition: none;
+    }
+
+        a:hover {
+            color: #ffa500;
+        }
+
+    #nav {
+        position: relative;
+        margin: 0 0 0 0;
+        opacity: 1;
+        background: none;
+        border-radius: .5em;
+        list-style-type: none;
+        transform-origin: 0% 0%;
+        transform: none;
+        transition: none;
+        z-index: 2;
+        width: 100%;
+        padding: 0px;
+    }
+
+        #nav li {
+            font-size: 22px;
+        }
+
+    #navToggle input:checked ~ ul {
+        transform: none;
+    }
+
+    #navToggle {
+        display: block;
+        position: relative;
+        z-index: 1;
+    }
+
+        #navToggle span {
+            display: none;
+        }
+
+    #index-contain {
+        height: 9vw;
+        text-align: right;
+        margin-right: 2vw;
+    }
+
+    #index-title {
+        font-size: 3.8vw;
+        color: #fff;
+    }
+
+
+    #links {
+        color: darkorange;
+    }
+          
+    nav {
+        min-height: 100vh;
+        background-color: lightgrey;
+        width: 20vw;
+        position: fixed;
+        left: 0px;
+    }
+          
+    main {
+        position: absolute;
+        left: 20vw;
+        top: 18vh;
+    }
+
+
+    footer {
+        position: absolute;
+        bottom: 0px;
+        left: 20vw;
+        width: 80vw;
+    }
+
+    footer p {
+        text-align: center;
+    }
+    .page-holder {
+        background-color: antiquewhite;
+        min-height: 50vh;
+        width: 60vw;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        padding: 2vw;
+        margin-top: 2vh;
+    }
+}

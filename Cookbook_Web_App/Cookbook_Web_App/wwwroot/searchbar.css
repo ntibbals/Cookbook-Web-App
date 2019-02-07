@@ -1,4 +1,8 @@
-﻿.search-bar{
+﻿.search-holder {
+    margin-top: 2vw;
+}
+
+.search-bar{
     box-sizing: border-box;
 }
 
@@ -11,5 +15,6 @@
 
 .search-button {
     box-sizing: border-box;
+    min-width: 60px;
     width: 10%;
 }

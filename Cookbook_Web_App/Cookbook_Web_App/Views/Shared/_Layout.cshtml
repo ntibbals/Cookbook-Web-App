@@ -4,9 +4,10 @@
 <head>
     <title>Home Page</title>
     <link href="~/reset.css" rel="stylesheet" />
-    <link href="~/StyeSheet.css" rel="stylesheet" />
-    <link href="~/Header.css" rel="stylesheet" />
+    <link href="~/Mobile.css" rel="stylesheet" />
+    <link href="~/DeskTop.css" rel="stylesheet" />
     <link href="~/searchbar.css" rel="stylesheet" />
+    <link href="~/tables.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
@@ -15,6 +16,9 @@
     <header>
         <div id="headcontain">
 
+            <div id="index-contain">
+                <h1 id="index-title"> Claire's Cookbook</h1>
+            </div>
             <nav id="hamburger" role="navigation">
                 <div id="navToggle">
                     <input type="checkbox" />
@@ -24,25 +28,24 @@
                     <ul id="nav">
                         <li><a id="links" href='/'> Home </a></li>
                         <li><a id="links" href='/User'> My Profile</a></li>
-                        <li><a id="links" href='/SavedRecipe'> My Recipe's</a></li>
+                        <li><a id="links" href='/SavedRecipe'> My Recipes</a></li>
                         <li><a id="links" href='/Comments'> Comments </a></li>
                     </ul>
 
                 </div>
             </nav>
             @*<img id = "headrecipe" src= "" > *@
-            <div id="index-contain">
-                <h1 id="index-title"> Claire's Cookbook</h1>
-            </div>
         </div>
     </header>
     <main>
-        <form asp-controller="Search" asp-action="Index" class="search-bar">
-            <p>
-                <input type="text" name="searchRecipes" placeholder="Search recipes by name" class="search-input">
-                <input type="submit" value="Filter" class="search-button" />
-            </p>
-        </form>
+        <section class="search-holder">
+            <form asp-controller="Search" asp-action="Index" class="search-bar">
+                <p>
+                    <input type="text" name="searchRecipes" placeholder="Search recipes by name" class="search-input">
+                    <input type="submit" value="Filter" class="search-button" />
+                </p>
+            </form>
+        </section>
         <section class="page-holder">
             @RenderBody()
         </section>

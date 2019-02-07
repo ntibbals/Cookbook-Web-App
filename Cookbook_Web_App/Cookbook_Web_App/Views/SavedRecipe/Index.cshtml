@@ -9,10 +9,10 @@
 <h1>My Recipes</h1>
 <div>
 
-    <table class="table col-md-4 offset-md-4 table-bordered">
-        <thead class="thead-light">
+    <table>
+        <thead>
 
-            <tr class=" = " table-seconday>
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.SavedRecipeID)
                 </th>
@@ -30,7 +30,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr class="table-secondary">
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.SavedRecipeID)
                 </td>
