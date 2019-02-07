@@ -2,11 +2,15 @@
 
 
     header {
-        width: 100%;
+        position: fixed;
+        width: 100vw;
+        top:0px;
+        left:0px;
         background-color: #353535;
         font-size: 6vw;
         padding-top: .5vw;
         font-family: 'VT323', monospace;
+        z-index: 1;
     }
     h1 {
         text-align: right;
@@ -79,18 +83,11 @@
         position: fixed;
         left: 0px;
     }
-
-
-
-
-
-
-
-
-
+          
     main {
         position: absolute;
         left: 20vw;
+        top: 18vh;
     }
 
 
