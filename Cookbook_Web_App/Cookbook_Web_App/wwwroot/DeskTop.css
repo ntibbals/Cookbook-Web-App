@@ -20,7 +20,7 @@
 
     a {
         text-decoration: none;
-        color: #fff;
+        color: black;
         transition: none;
     }
 
@@ -68,7 +68,7 @@
     }
 
     #links {
-        color: darkorange;
+        color: black;
     }
 
     nav {
@@ -92,11 +92,13 @@
 
 
     footer {
-        position: absolute;
-        bottom: 0;
+        position: fixed;
+        top: 96vh;
         margin-left: 14vw;
-        width: 80vw;
-        background-color: powderblue;
+        width: 86vw;
+        background-color: #CCDFE5;
+        color: black;
+
     }
 
     footer p {
