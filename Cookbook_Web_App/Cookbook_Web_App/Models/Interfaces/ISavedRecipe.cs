@@ -11,6 +11,15 @@ namespace Cookbook_Web_App.Models.Interfaces
         Task<SavedRecipe> GetSavedRecipe(int? id);
         Task<IEnumerable<SavedRecipe>> GetSavedRecipes();
 
+        //update
 
+        Task UpdateSavedRecipe(SavedRecipe savedRecipe);
+
+        //delete
+
+        Task DeleteSavedRecipe(int id);
+
+        bool SavedRecipeExists(int id);
     }
-}
+
+|}
