@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Cookbook_Web_App.Models.Interfaces
 {
-    interface IUser
+    public interface IUser
     {
         Task CreateUser(User user);
 

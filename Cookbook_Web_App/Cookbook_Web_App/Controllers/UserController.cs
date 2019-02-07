@@ -7,14 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Cookbook_Web_App.Models.Interfaces;
 
 namespace Cookbook_Web_App.Controllers
 {
     public class UserController : Controller
     {
-        private readonly CookbookDbContext _context;
+        private readonly IUser _context;
 
-        public UserController(CookbookDbContext context)
+        public UserController(IUser context)
         {
             _context = context;
         }
@@ -26,10 +27,11 @@ namespace Cookbook_Web_App.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string userInput)
+        public async Task<IActionResult> Login(string userInput)
         {
 
-            User user = _context.User.FirstOrDefault(u => u.UserName == userInput);
+            var users = await _context.GetUsersAsync();
+            var user = users.FirstOrDefault(u => u.UserName == userInput);
             if (user != null)
             {
                 
@@ -43,10 +45,11 @@ namespace Cookbook_Web_App.Controllers
 
         }
         //Get User
-        public IActionResult Index()
+        public async  Task<IActionResult> Index()
         {
             var name = HttpContext.Session.GetString("UserName");
-            User user = _context.User.FirstOrDefault(u => u.UserName == name);
+            var users = await _context.GetUsersAsync();
+            User user = users.FirstOrDefault(u => u.UserName == name);
 
             if (user == null)
             {
@@ -69,7 +72,7 @@ namespace Cookbook_Web_App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var users = await _context.User.ToListAsync();
+                var users = await _context.GetUsersAsync();
                 foreach (var u in users)
                 {
                     if (u.UserName == user.UserName)
@@ -77,8 +80,7 @@ namespace Cookbook_Web_App.Controllers
                         return RedirectToAction(nameof(Create2));
                     }
                 }
-                _context.Add(user);
-                await _context.SaveChangesAsync();
+                await _context.CreateUser(user);
                 HttpContext.Session.SetString("UserName", user.UserName);
                 return RedirectToAction(nameof(Index), user);
             }
@@ -87,14 +89,14 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get: Edit user
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var user = _context.User.FirstOrDefault(u => u.ID == id);
+            var users = await _context.GetUsersAsync();
+            var user = users.FirstOrDefault(u => u.ID == id);
             if (user == null)
             {
                 return NotFound();
@@ -116,13 +118,13 @@ namespace Cookbook_Web_App.Controllers
             {
                 try
                 {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
+                    await _context.UpdateUser(user);
 
                 }
                 catch (Exception)
                 {
-                    if (!UserExists(user.ID))
+                    bool tester = await UserExistsAsync(user.ID);
+                    if (!tester)
                     {
                         return NotFound();
                     }
@@ -139,7 +141,8 @@ namespace Cookbook_Web_App.Controllers
         //Get Delete user
         public async Task<IActionResult> Delete(int id)
         {
-            var user = await _context.User.FirstOrDefaultAsync(u => u.ID == id);
+            var users = await _context.GetUsersAsync();
+            var user = users.FirstOrDefault(u => u.ID == id);
             if (user == null)
             {
                 return NotFound();
@@ -152,38 +155,23 @@ namespace Cookbook_Web_App.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var user = _context.User.FirstOrDefault(u => u.ID == id);
 
-            var recipes = await _context.SavedRecipe.ToListAsync();
-            var userRecipes = recipes.Where(r => r.UserID == id);
-            var comments = await _context.Comments.ToListAsync();
-            foreach (var userRecipe in userRecipes)
-            {
-                var recipeComments = comments.Where(c => c.SavedRecipeID == userRecipe.SavedRecipeID);
-                foreach (var recipeComment in recipeComments)
-                {
-                    _context.Comments.Remove(recipeComment);
-                }
-                _context.SavedRecipe.Remove(userRecipe);
-            }
-            _context.User.Remove(user);
-
-            await _context.SaveChangesAsync();
+            await _context.DeleteUser(id);
             HttpContext.Session.Remove("UserName");
             return RedirectToAction("Index", "Home");
-            //TODO Redirect to home page instead of dead index page
         }
 
-        public async Task<IActionResult> LogOut()
+        public IActionResult LogOut()
         {
             HttpContext.Session.Remove("UserName");
-            return RedirectToAction("Index", "Home"); //TODO redirect to homepage
+            return RedirectToAction("Index", "Home");
         }
 
 
-        private bool UserExists(int id)
+        private async Task<bool> UserExistsAsync(int id)
         {
-            return _context.User.Any(u => u.ID == id);
+            var users = await _context.GetUsersAsync();
+            return users.Any(u => u.ID == id);
         }
 
 
@@ -202,7 +190,7 @@ namespace Cookbook_Web_App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var users = await _context.User.ToListAsync();
+                var users = await _context.GetUsersAsync();
                 foreach (var u in users)
                 {
                     if (u.UserName == user.UserName)
@@ -210,13 +198,12 @@ namespace Cookbook_Web_App.Controllers
                         return RedirectToAction(nameof(Create2));
                     }
                 }
-                _context.Add(user);
-                await _context.SaveChangesAsync();
+                await _context.CreateUser(user);
                 HttpContext.Session.SetString("UserName", user.UserName);
                 return RedirectToAction(nameof(Index), user);
             }
 
-            return View(Index());
+            return RedirectToAction("Index");
         }
     }
 }
