@@ -585,6 +585,33 @@ namespace Cookbook_Web_App_TDD
             }
         }
 
+        [Fact]
+        public async void CanUpdateSavedRecipe()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanUpdateSavedRecipe").Options;
+            using (CookbookDbContext context = new CookbookDbContext(options))
+            {
+                SavedRecipe savedRecipe = new SavedRecipe();
+                savedRecipe.SavedRecipeID = 1;
+                savedRecipe.Name = "Chicken";
+                savedRecipe.APIReference = 2;
+                savedRecipe.UserID = 2;
+
+                savedRecipe.Name = "Pork";
+                savedRecipe.APIReference = 3;
+                savedRecipe.UserID = 3;
+
+                SavedRecipeService savedRecipeService = new SavedRecipeService(context);
+
+                await savedRecipeService.CreateRecipe(savedRecipe);
+                await savedRecipeService.UpdateSavedRecipe(savedRecipe);
+
+                var result = context.SavedRecipe.FirstOrDefault(s => s.SavedRecipeID == s.SavedRecipeID);
+
+                Assert.Equal(savedRecipe, result);
+            }
+        }
+
 
 
 
