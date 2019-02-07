@@ -115,23 +115,25 @@ a:hover {
 
 /*colors */
 header {
-    background-color: #dddddd;
+    background-color: none;
     position: relative;
     min-height: 50px;
 }
 
 footer{
     position: absolute;
-    bottom:0px;
+    bottom: 0px;
 
 }
 
 main {
-    background-color: white;
+    background-color: none;
 }
 
 .page-holder {
-    background-color: #a8a8a8;
+    background-color: white;
+    opacity: 0.7;
+    border-radius: 42px;
     min-height: 50vh;
     width: 80vw;
     margin-left: auto;

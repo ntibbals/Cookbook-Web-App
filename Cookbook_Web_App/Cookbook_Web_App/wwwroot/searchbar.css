@@ -25,7 +25,9 @@
 }
 
 .input-button {
-    background-color: cadetblue;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
     border: none;
     font-family: 'Montserrat', sans-serif;
     margin: 5px;
@@ -34,6 +36,6 @@
     width: 10vw;
 }
 .input-button:hover{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
