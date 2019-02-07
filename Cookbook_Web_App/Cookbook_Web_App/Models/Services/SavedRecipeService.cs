@@ -17,14 +17,14 @@ namespace Cookbook_Web_App.Models.Services
             _context = context;
         }
 
-        //create
+        //delete
         public async Task DeleteSavedRecipe(int id)
         {
             SavedRecipe savedRecipe = _context.SavedRecipe.FirstOrDefault(s => s.SavedRecipeID == SavedRecipeID);
             _context.SavedRecipe.Remove(savedRecipe);
             await _context.SaveChangesAsync();
         }
-
+        //confirm existence
         public bool SavedRecipeExists(int id)
         {
             return _context.SavedRecipe.Any(s => s.SavedRecipeID == id);
