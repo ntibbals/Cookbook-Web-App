@@ -45,7 +45,7 @@ namespace Cookbook_Web_App.Controllers
 
         }
         //Get User
-        public async  Task<IActionResult> Index()
+        public async  Task<IActionResult> Index(string userName)
         {
             var name = HttpContext.Session.GetString("UserName");
             var users = await _context.GetUsersAsync();
