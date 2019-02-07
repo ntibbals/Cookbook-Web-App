@@ -7,9 +7,9 @@
 <div>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly"></div>
-
-        <label asp-for="SavedRecipeID"></label>
-        <input asp-for="SavedRecipeID" />
+        <input type="hidden" asp-for="@Model.SavedRecipeID" />
+        @*<label asp-for="SavedRecipeID"></label>
+        <input asp-for="SavedRecipeID" />*@
 
         <label asp-for="Comment"></label>
         @*<input asp-for="Comment" />*@
