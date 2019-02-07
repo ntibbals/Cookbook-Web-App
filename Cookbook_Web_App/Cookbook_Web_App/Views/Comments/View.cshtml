@@ -15,10 +15,15 @@
                 <div>
                     @Html.DisplayFor(modelItem => item.Comment)
                 </div>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
 
             }
+            <form asp-action="RedirectToDetails">
+                <input type="hidden" value="SavedRecipeID" />
+                <input type="submit" value="Create a new Note" />
+            </form>
+            <a asp-action="Create" asp-route-id="SavedRecipeID">Create New Note</a>
         </div>
     </div>
 </div>
-
-<a asp-action="Index">Back to List</a>

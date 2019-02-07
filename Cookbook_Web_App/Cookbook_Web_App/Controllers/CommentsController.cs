@@ -68,8 +68,16 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get: Create User
-        public IActionResult Create()
+        public IActionResult Create(int? savedRecipeId)
         {
+            if (savedRecipeId == null)
+            {
+                savedRecipeId = HttpContext.Session.GetInt32("CommentsID");
+                if (savedRecipeId == null)
+                {
+                    return NotFound();
+                }
+            }
             return View();
         }
         /// <summary>
@@ -196,10 +204,21 @@ namespace Cookbook_Web_App.Controllers
             return _context.Comments.Any(co => co.ID == id);
         }
 
+        public IActionResult RedirectToDetails(int? savedRecipeId)
+        {
+            if (savedRecipeId == null)
+            {
+                savedRecipeId = HttpContext.Session.GetInt32("CommentsID");
+                if (savedRecipeId == null)
+                {
+                    return NotFound();
+                }
+            }
+            return RedirectToAction("Create", "Comments", new { savedRecipeId });
+        }
 
 
 
 
-        
     }
 }
