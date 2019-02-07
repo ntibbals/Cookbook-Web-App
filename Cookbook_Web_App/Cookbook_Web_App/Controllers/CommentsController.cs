@@ -23,9 +23,15 @@ namespace Cookbook_Web_App.Controllers
 
         //Get: Create User
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            int? id = HttpContext.Session.GetInt32("CommentsID");
+            var allComments = await _context.GetComments();
+            if (allComments == null)
+            {
+                return NotFound();
+            }
+            return View(allComments);
         }
         /// <summary>
         /// Get Comments
@@ -95,9 +101,9 @@ namespace Cookbook_Web_App.Controllers
                 if (ModelState.IsValid)
                 {
                     await _context.CreateComment(comments);
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(View));
                 }
-                return View(comments);
+                return RedirectToAction(nameof(View));
             }
             catch (Exception)
             {
@@ -154,10 +160,10 @@ namespace Cookbook_Web_App.Controllers
                 {
                     throw;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(View));
             }
 
-            return View(comments);
+            return RedirectToAction(nameof(View));
         }
 
 
@@ -192,7 +198,7 @@ namespace Cookbook_Web_App.Controllers
 
             await _context.Delete(comment.ID);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(View));
         }
 
         public IActionResult RedirectToDetails(int? savedRecipeId)
@@ -206,6 +212,18 @@ namespace Cookbook_Web_App.Controllers
                 }
             }
             return RedirectToAction("Create", "Comments", new { savedRecipeId });
+        }
+        public IActionResult RedirectToSave(int? id)
+        {
+            if (id == null)
+            {
+                id = HttpContext.Session.GetInt32("CommentsID");
+                if (id == null)
+                {
+                    return NotFound();
+                }
+            }
+            return RedirectToAction("Details", "SavedRecipe", new { id });
         }
 
 

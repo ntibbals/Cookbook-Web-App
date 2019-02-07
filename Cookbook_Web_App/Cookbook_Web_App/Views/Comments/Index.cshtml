@@ -1,4 +1,4 @@
-﻿@model Cookbook_Web_App.Models.Comments
+﻿@model IEnumerable<Cookbook_Web_App.Models.Comments>
 
 @{ 
     ViewData["Title"] = "Index";
@@ -8,9 +8,22 @@
 <h1> Comments Test Layout</h1>
 
 <div>
-    <a asp-action="Create">Create New Note</a>
+    <form>
+        <input type="submit" formaction="@Url.Action("RedirectToSave")" value="My Saved Recipes" class="btn btn-primary" />
+    </form>
+    @foreach (var item in Model)
+    {
 
-        @*<a asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
-        <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a>*@
+    <div>
+        @Html.DisplayFor(modelItem => item.Comment)
+        <form>
+            @Html.ActionLink("Edit", "Edit", new { item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { item.ID }) |
+
+            <input type="submit" formaction="@Url.Action("RedirectToSave")" value="View Recipe" class="btn btn-primary" />
+        </form>
+    </div>
+
+    }
 
 </div>
