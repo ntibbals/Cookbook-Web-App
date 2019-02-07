@@ -117,6 +117,10 @@ a:hover {
     color: blue;
 }
 
+.underline {
+    text-decoration-line: underline;
+}
+
 /*colors */
 header {
     background-color: none;
