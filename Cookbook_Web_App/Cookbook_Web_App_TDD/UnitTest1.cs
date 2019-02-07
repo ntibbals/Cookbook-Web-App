@@ -461,7 +461,30 @@ namespace Cookbook_Web_App_TDD
                 await commentsServices.CreateComment(comments);
                 await commentsServices.Delete(1);
 
-                var result = context.Comments.FirstOrDefault(c => c.ID == comments.ID);
+                var result = context.Comments.Any(c => c.ID == 1);
+
+                Assert.False(result);
+            }
+        }
+
+        [Fact]
+        public async void CanReadComments()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanReadComments").Options;
+            using (CookbookDbContext context = new CookbookDbContext(options))
+            {
+                Comments comments = new Comments();
+                comments.ID = 1;
+                comments.APIReference = 2;
+                comments.SavedRecipeID = 3;
+                comments.Comment = "So delish";
+
+                CommentsServices commentsServices = new CommentsServices(context);
+
+                await commentsServices.CreateComment(comments);
+                await commentsServices.GetSavedComments(1);
+
+                var result = context.Comments.FirstOrDefault(c => c.ID == c.ID);
 
                 Assert.Equal(comments, result);
             }
