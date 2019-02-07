@@ -1,7 +1,8 @@
 ﻿th {
     font-weight: bold;
-    padding-right: .5vw;
+    padding-right: 1vw;
+    text-align: left;
 }
 td {
-    padding-right: .5vw;
+    padding-right: 1vw;
 }

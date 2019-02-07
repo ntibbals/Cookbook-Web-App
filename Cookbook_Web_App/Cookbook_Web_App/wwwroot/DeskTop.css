@@ -6,15 +6,12 @@
         width: 100vw;
         top:0px;
         left:0px;
-        background-color: #353535;
-        font-size: 6vw;
         padding-top: .5vw;
-        font-family: 'VT323', monospace;
-        z-index: 1;
+        background-color: white;
+        box-sizing: border-box;
     }
     h1 {
         text-align: right;
-        margin-right: 10vw;
     }
 
     a {
@@ -29,6 +26,7 @@
 
     #nav {
         position: relative;
+        top: 0px;
         margin: 0 0 0 0;
         opacity: 1;
         background: none;
@@ -40,6 +38,7 @@
         z-index: 2;
         width: 100%;
         padding: 0px;
+
     }
 
         #nav li {
@@ -60,54 +59,52 @@
             display: none;
         }
 
-    #index-contain {
-        height: 9vw;
+    #indexcontain {
         text-align: right;
-        margin-right: 2vw;
     }
-
-    #index-title {
-        font-size: 3.8vw;
-        color: #fff;
-    }
-
 
     #links {
         color: darkorange;
     }
-          
+
     nav {
         min-height: 100vh;
         background-color: lightgrey;
         width: 20vw;
         position: fixed;
         left: 0px;
+        top: 0px;
     }
           
     main {
         position: absolute;
         left: 20vw;
         top: 18vh;
+        z-index: -1;
+        height: inherit;
+        width: 80vw;
+        margin: 0px;
     }
 
 
     footer {
-        position: absolute;
-        bottom: 0px;
-        left: 20vw;
+        position: static;
+        margin-left: 20vw;
         width: 80vw;
+        background-color: blue;
     }
 
     footer p {
         text-align: center;
     }
     .page-holder {
-        background-color: antiquewhite;
+        background-color: #a8a8a8;
         min-height: 50vh;
         width: 60vw;
         margin-left: 10vw;
         margin-right: 10vw;
         padding: 2vw;
-        margin-top: 2vh;
+        margin-top: 6vh;
+        margin-bottom: 5vh;
     }
 }
