@@ -663,6 +663,8 @@ namespace Cookbook_Web_App_TDD
                 user.ID = 1;
                 user.UserName = "ImCool23";
 
+                user.UserName = "ImSOCool23";
+
                 UserService userService = new UserService(context);
 
                 await userService.CreateUser(user);
@@ -673,6 +675,28 @@ namespace Cookbook_Web_App_TDD
                 Assert.Equal(user, result);
             }
         }
+
+        [Fact]
+        public async void CanDeleteUser()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanDeleteUser").Options;
+            using (CookbookDbContext context = new CookbookDbContext(options))
+            {
+                User user = new User();
+                user.ID = 1;
+                user.UserName = "ImCool23";
+
+                UserService userService = new UserService(context);
+
+                await userService.CreateUser(user);
+                await userService.DeleteUser(1);
+
+                var result = context.User.FirstOrDefault(u => u.ID == 1);
+
+                Assert.Null(result);
+            }
+        }
+
 
 
 
