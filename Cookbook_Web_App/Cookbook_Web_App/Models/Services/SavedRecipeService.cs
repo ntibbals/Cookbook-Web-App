@@ -19,10 +19,16 @@ namespace Cookbook_Web_App.Models.Services
 
         //create
         public async Task DeleteSavedRecipe(int id)
-        { 
+        {
             SavedRecipe savedRecipe = _context.SavedRecipe.FirstOrDefault(s => s.SavedRecipeID == SavedRecipeID);
             _context.SavedRecipe.Remove(savedRecipe);
             await _context.SaveChangesAsync();
+        }
 
+        public bool SavedRecipeExists(int id)
+        {
+            return _context.SavedRecipe.Any(s => s.SavedRecipeID == id);
+
+        }
     }
 }
