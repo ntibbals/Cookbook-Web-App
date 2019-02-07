@@ -36,7 +36,7 @@ namespace Cookbook_Web_App.Controllers
             
             var val = values.Where(r => r.Name.ToLower().Contains(searchRecipes.ToLower()));
             
-            return View(values);
+            return View(val);
         }
 
         public async Task<IActionResult> Details(int id)
