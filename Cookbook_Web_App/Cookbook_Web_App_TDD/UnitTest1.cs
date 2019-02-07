@@ -551,9 +551,9 @@ namespace Cookbook_Web_App_TDD
 
                 savedRecipeService.SavedRecipeExists(1);
 
-                var result = context.SavedRecipe.Any(s => s.SavedRecipeID == s.SavedRecipeID);
+                var result = context.SavedRecipe.Any(s => s.SavedRecipeID == 1);
 
-                Assert.Equal(savedRecipe, result);
+                Assert.False(result);
             }
         }
 
