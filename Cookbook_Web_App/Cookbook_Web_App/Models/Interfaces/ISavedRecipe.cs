@@ -10,6 +10,7 @@ namespace Cookbook_Web_App.Models.Interfaces
         //read
         Task<SavedRecipe> GetSavedRecipe(int? id);
         Task<IEnumerable<SavedRecipe>> GetSavedRecipes();
+        Task CreateRecipe(SavedRecipe recipe);
 
         //update
 
@@ -20,6 +21,8 @@ namespace Cookbook_Web_App.Models.Interfaces
         Task DeleteSavedRecipe(int id);
 
         bool SavedRecipeExists(int id);
+
+        Task<User> GetUser(string userName);
     }
 
-|}
+}

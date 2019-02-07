@@ -1,5 +1,6 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
+using Cookbook_Web_App.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,12 +15,12 @@ namespace Cookbook_Web_App.Controllers
 {
     public class SavedRecipeController : Controller
     {
-        private readonly CookbookDbContext _context;
+        private readonly ISavedRecipe _context;
 
         static HttpClient client = new HttpClient();
 
 
-        public SavedRecipeController(CookbookDbContext context)
+        public SavedRecipeController(ISavedRecipe context)
         {
             _context = context;
         }
@@ -29,20 +30,20 @@ namespace Cookbook_Web_App.Controllers
             if (userName == null)
             {
                 var name = HttpContext.Session.GetString("UserName");
-                User user = _context.User.FirstOrDefault(u => u.UserName == name);
+                User user = await _context.GetUser(name);
                 if (user == null)
                 {
                     return RedirectToAction("Index", "User");
                 }
-                var recipes = await _context.SavedRecipe.ToListAsync();
+                var recipes = await _context.GetSavedRecipes();
                 var userRecipes = recipes.Where(r => r.UserID == user.ID);
                 return View(userRecipes);
             }
             else
             {
                 var name = userName;
-                User user = _context.User.FirstOrDefault(u => u.UserName == name);
-                var recipes = await _context.SavedRecipe.ToListAsync();
+                User user = await _context.GetUser(userName);
+                var recipes = await _context.GetSavedRecipes();
                 var userRecipes = recipes.Where(r => r.UserID == user.ID);
                 return View(userRecipes);
             }
@@ -51,7 +52,7 @@ namespace Cookbook_Web_App.Controllers
         //Get SavedRecipe
         public async Task<IActionResult> Details(int id)
         {
-            SavedRecipe savedRecipe = _context.SavedRecipe.FirstOrDefault(r => r.SavedRecipeID == id);
+            SavedRecipe savedRecipe = await _context.GetSavedRecipe(id);
             int iD = savedRecipe.APIReference;
 
             Recipe recipe = new Recipe();
@@ -99,11 +100,10 @@ namespace Cookbook_Web_App.Controllers
         public async Task<IActionResult> Create([Bind("SavedRecipeID,UserID,APIReference,Name")] SavedRecipe savedRecipe)
         {
             var name = HttpContext.Session.GetString("UserName");
-            User user = _context.User.FirstOrDefault(u => u.UserName == name);
+            User user = await _context.GetUser(name);
             if (ModelState.IsValid)
             {
-                _context.Add(savedRecipe);
-                await _context.SaveChangesAsync();
+                await _context.CreateRecipe(savedRecipe);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -118,8 +118,7 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
 
-            var savedRecipe = await _context.SavedRecipe
-                .FirstOrDefaultAsync(r => r.SavedRecipeID == id);
+            var savedRecipe = await _context.GetSavedRecipe(id);
             if (savedRecipe == null)
             {
                 return NotFound();
@@ -132,16 +131,9 @@ namespace Cookbook_Web_App.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var savedRecipe = await _context.SavedRecipe.FirstAsync(s => s.SavedRecipeID == id);
-            var comments = await _context.Comments.ToListAsync();
-            var userComments = comments.Where(c => c.SavedRecipeID == id);
-            foreach (var item in userComments)
-            {
-                _context.Comments.Remove(item);
-            }
-            _context.SavedRecipe.Remove(savedRecipe);
+ 
+            await _context.DeleteSavedRecipe(id);
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
@@ -152,7 +144,7 @@ namespace Cookbook_Web_App.Controllers
 
         private bool SavedRecipeExists(int id)
         {
-            return _context.SavedRecipe.Any(s => s.SavedRecipeID == id);
+            return _context.SavedRecipeExists(id);
         }
     }
 }
