@@ -12,8 +12,8 @@
         <input type="hidden" value="SavedRecipeID" asp-for="ID" />
         <input type="submit" value="View Notes" />
     </form>
+    <img src="@Model.Image" class="img-rounded" alt="">
     <div>
-
         <div>
             @foreach (var item in Model.Instructions)
             {
