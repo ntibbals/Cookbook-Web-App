@@ -17,6 +17,17 @@ namespace Cookbook_Web_App.Models.Services
             _context = context;
         }
 
+        //read
+        public async Task <IEnumerable<SavedRecipe>> GetSavedRecipe()
+        {
+            return await _context.SavedRecipe.ToListAsync();
+        }
+
+        public async Task<SavedRecipe> GetSavedRecipe(int? id)
+        {
+            return await _context.SavedRecipe.FirstOrDefaultAsync(s => )
+        }
+
         //delete
         public async Task DeleteSavedRecipe(int id)
         {
