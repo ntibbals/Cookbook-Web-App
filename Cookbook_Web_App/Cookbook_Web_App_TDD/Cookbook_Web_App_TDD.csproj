@@ -16,6 +16,9 @@
     <Reference Include="Cookbook_Web_App">
       <HintPath>..\Cookbook_Web_App\bin\Debug\netcoreapp2.2\Cookbook_Web_App.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore\2.2.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Xunit;
+using System.Linq;
 using Cookbook_Web_App.Models;
+using Microsoft.EntityFrameworkCore;
+using Cookbook_Web_App.Data;
+
 
 namespace Cookbook_Web_App_TDD
 {
@@ -415,6 +421,19 @@ namespace Cookbook_Web_App_TDD
 
             Assert.Equal("Hello World", comments.Comment);
 
+        }
+
+        [Fact]
+        public void CanCreateComments()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanCreateComments").Options;
+            using (CookbookDbContext context = new CookbookDbContext(Options))
+            {
+                Comments comments = new Comments();
+                comments.ID = 1;
+
+                context.Comments
+            }
         }
 
 
