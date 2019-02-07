@@ -25,7 +25,7 @@ namespace Cookbook_Web_App.Models.Services
 
         public async Task<SavedRecipe> GetSavedRecipe(int? id)
         {
-            return await _context.SavedRecipe.FirstOrDefaultAsync(s => )
+            return await _context.SavedRecipe.FirstOrDefaultAsync(s => s.SavedRecipeID == id); )
         }
 
         //delete
