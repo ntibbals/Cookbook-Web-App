@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cookbook_Web_App.Data;
+using Cookbook_Web_App.Models.Interfaces;
+using Cookbook_Web_App.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +40,8 @@ namespace Cookbook_Web_App
             services.AddMvc();
             services.AddDbContext<CookbookDbContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddScoped<IComments, CommentsServices>();
 
         }
 
