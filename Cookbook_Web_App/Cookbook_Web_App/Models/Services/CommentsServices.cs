@@ -46,5 +46,13 @@ namespace Cookbook_Web_App.Models.Services
         {
             return await _context.Comments.ToListAsync();
         }
+
+        public async Task<User> GetUser(string userName)
+        {
+
+                User user = await _context.User.FirstOrDefaultAsync(u => u.UserName == userName);
+                return user;
+
+        }
     }
 }

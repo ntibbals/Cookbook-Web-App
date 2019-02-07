@@ -14,7 +14,7 @@ namespace Cookbook_Web_App.Models.Interfaces
         Task<IEnumerable<Comments>> GetComments();
 
         Task GetComments(Comments comment);
-
+        Task<User> GetUser(string userName);
         Task Delete(int id);
     }
 }
