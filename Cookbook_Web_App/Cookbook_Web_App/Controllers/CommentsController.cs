@@ -1,5 +1,6 @@
 ﻿using Cookbook_Web_App.Data;
 using Cookbook_Web_App.Models;
+using Cookbook_Web_App.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,9 @@ namespace Cookbook_Web_App.Controllers
 {
     public class CommentsController : Controller
     {
-        private readonly CookbookDbContext _context;
+        private readonly IComments _context;
 
-        public CommentsController(CookbookDbContext context)
+        public CommentsController(IComments context)
         {
             _context = context;
         }
@@ -22,9 +23,15 @@ namespace Cookbook_Web_App.Controllers
 
         //Get: Create User
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            int? id = HttpContext.Session.GetInt32("CommentsID");
+            var allComments = await _context.GetComments();
+            if (allComments == null)
+            {
+                return NotFound();
+            }
+            return View(allComments);
         }
         /// <summary>
         /// Get Comments
@@ -37,8 +44,8 @@ namespace Cookbook_Web_App.Controllers
             {
                 return NotFound();
             }
-
-            var comment =  await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
+            var allComments = await _context.GetComments();
+            var comment = allComments.FirstOrDefault(co => co.ID == id);
             if (comment ==null)
             {
                 return NotFound();
@@ -57,14 +64,14 @@ namespace Cookbook_Web_App.Controllers
                     return NotFound();
                 }
             }
-
-            var comment = _context.Comments.Where(co => co.SavedRecipeID == id);
+            var allComments = await _context.GetComments();
+            var comment = allComments.Where(co => co.SavedRecipeID == id);
             if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(await comment.ToListAsync());
+            return View(comment);
         }
 
         //Get: Create User
@@ -93,11 +100,10 @@ namespace Cookbook_Web_App.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    _context.Add(comments);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    await _context.CreateComment(comments);
+                    return RedirectToAction(nameof(View));
                 }
-                return View(comments);
+                return RedirectToAction(nameof(View));
             }
             catch (Exception)
             {
@@ -117,8 +123,9 @@ namespace Cookbook_Web_App.Controllers
             {
                 return NotFound();
             }
+            var allComments = await _context.GetComments();
 
-            var comment = await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
+            var comment = allComments.FirstOrDefault(co => co.ID == id);
             
             if(comment == null)
             {
@@ -147,17 +154,16 @@ namespace Cookbook_Web_App.Controllers
                 try
                 {
 
-                    _context.Update(comments);
-                    await _context.SaveChangesAsync();
+                    await _context.UpdateComment(comments);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     throw;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(View));
             }
 
-            return View(comments);
+            return RedirectToAction(nameof(View));
         }
 
 
@@ -168,7 +174,8 @@ namespace Cookbook_Web_App.Controllers
         /// <returns>delete view</returns>
         public async Task<IActionResult> Delete(int id)
         {
-            var comment = await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
+            var allComments = await _context.GetComments();
+            var comment = allComments.FirstOrDefault(co => co.ID == id);
 
             if(comment == null)
             {
@@ -186,22 +193,12 @@ namespace Cookbook_Web_App.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            var comment = await _context.Comments.FirstOrDefaultAsync(co => co.ID == id);
+            var allComments = await _context.GetComments();
+            var comment = allComments.FirstOrDefault(co => co.ID == id);
 
-            _context.Comments.Remove(comment);
+            await _context.Delete(comment.ID);
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        /// <summary>
-        /// Check if comment exists
-        /// </summary>
-        /// <param name="id">comment id</param>
-        /// <returns>comment</returns>
-        private bool CommentExists(int id)
-        {
-            return _context.Comments.Any(co => co.ID == id);
+            return RedirectToAction(nameof(View));
         }
 
         public IActionResult RedirectToDetails(int? savedRecipeId)
@@ -215,6 +212,18 @@ namespace Cookbook_Web_App.Controllers
                 }
             }
             return RedirectToAction("Create", "Comments", new { savedRecipeId });
+        }
+        public IActionResult RedirectToSave(int? id)
+        {
+            if (id == null)
+            {
+                id = HttpContext.Session.GetInt32("CommentsID");
+                if (id == null)
+                {
+                    return NotFound();
+                }
+            }
+            return RedirectToAction("Details", "SavedRecipe", new { id });
         }
 
 

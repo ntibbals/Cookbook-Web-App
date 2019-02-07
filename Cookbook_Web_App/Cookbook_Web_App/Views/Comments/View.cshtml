@@ -7,7 +7,12 @@
 <div>
 
     <div>
-
+        <div>
+            @*<form asp-action="RedirectToSave">
+                <input type="hidden" value="SavedRecipeID" />
+                <input type="submit" value="Back to Recipe" />
+            </form>*@
+        </div>
         <div>
             @foreach (var item in Model)
             {
@@ -19,11 +24,14 @@
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
 
             }
-            <form asp-action="RedirectToDetails">
-                <input type="hidden" value="SavedRecipeID" />
-                <input type="submit" value="Create a new Note" />
-            </form>
-            <a asp-action="Create" asp-route-id="SavedRecipeID">Create New Note</a>
+
+            <div>
+                <form>
+                    <input type="submit" formaction="@Url.Action("RedirectToDetails")" value="Create New Notes" class="btn btn-primary"/>
+                    <input type="submit" formaction="@Url.Action("RedirectToSave")" value="Back to Recipe" class="btn btn-primary" />
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

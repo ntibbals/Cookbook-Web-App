@@ -5,12 +5,13 @@
 
     Layout = "_Layout";
 }
-@Model.ID
-@Model.Name
 <h1>My Recipes</h1>
 <div>
-    <h2>Details of @Model.Name</h2>
-
+    <h2>@Model.Name</h2>
+    <form asp-action="RedirectToDetails">
+        <input type="hidden" value="SavedRecipeID" asp-for="ID" />
+        <input type="submit" value="View Notes" />
+    </form>
     <div>
 
         <div>

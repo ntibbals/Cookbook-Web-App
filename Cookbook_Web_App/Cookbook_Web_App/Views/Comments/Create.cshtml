@@ -15,6 +15,7 @@
         @*<input asp-for="Comment" />*@
         <textarea asp-for="Comment"></textarea>
         <input type="submit" value="Create" class="btn btn-primary">
+        <input type="submit" formaction="@Url.Action("RedirectToSave")" value="Back to Recipe" class="btn btn-primary" />
 
 
     </form>
