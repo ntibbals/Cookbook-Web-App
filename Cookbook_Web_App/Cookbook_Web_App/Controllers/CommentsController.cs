@@ -75,11 +75,12 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get: Create User
-        public IActionResult Create(int? savedRecipeId)
+        public IActionResult Create(int? savedRecipeId, string name)
         {
             if (savedRecipeId == null)
             {
                 savedRecipeId = HttpContext.Session.GetInt32("CommentsID");
+                name = HttpContext.Session.GetString("Name");
                 if (savedRecipeId == null)
                 {
                     return NotFound();
@@ -93,7 +94,7 @@ namespace Cookbook_Web_App.Controllers
         /// <param name="comment">new comment</param>
         /// <returns>view</returns>
         [HttpPost]
-        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID, Comment")] Comments comments )
+        public  async Task<IActionResult> Create([Bind ("ID, SavedRecipeID, Comment, Name")] Comments comments )
         {
             try
             {
@@ -142,7 +143,7 @@ namespace Cookbook_Web_App.Controllers
         /// <param name="comments">comment object</param>
         /// <returns>view</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,SavedRecipeID,Comment")] Comments comments)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,SavedRecipeID,Comment, Name")] Comments comments)
         {
             if(id != comments.ID)
             {
@@ -201,23 +202,27 @@ namespace Cookbook_Web_App.Controllers
             return RedirectToAction(nameof(View));
         }
 
-        public IActionResult RedirectToDetails(int? savedRecipeId)
+        public IActionResult RedirectToDetails(int? savedRecipeId, string name)
         {
             if (savedRecipeId == null)
             {
                 savedRecipeId = HttpContext.Session.GetInt32("CommentsID");
+                name = HttpContext.Session.GetString("Name");
+
                 if (savedRecipeId == null)
                 {
                     return NotFound();
                 }
             }
-            return RedirectToAction("Create", "Comments", new { savedRecipeId });
+            return RedirectToAction("Create", "Comments", new { savedRecipeId, name });
         }
-        public IActionResult RedirectToSave(int? id)
+        public IActionResult RedirectToSave(int? id, string name)
         {
             if (id == null)
             {
                 id = HttpContext.Session.GetInt32("CommentsID");
+                name = HttpContext.Session.GetString("Name");
+
                 if (id == null)
                 {
                     return NotFound();

@@ -86,6 +86,8 @@ namespace Cookbook_Web_App.Controllers
             recipe.Ingredients = ingredients.Where(ri => ri.RecipeID == iD);
             recipe.Instructions = instructions.Where(ri => ri.RecipeId== iD);
             HttpContext.Session.SetInt32("CommentsID", id);
+            HttpContext.Session.SetString("Name", recipe.Name);
+
             return View(recipe);
         }
 

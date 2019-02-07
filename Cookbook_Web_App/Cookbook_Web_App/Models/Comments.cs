@@ -15,5 +15,6 @@ namespace Cookbook_Web_App.Models
         [Column(TypeName ="varchar(max)")]
         [MaxLength]
         public string Comment { get; set; }
+        public string Name { get; set; }
     }
 }
