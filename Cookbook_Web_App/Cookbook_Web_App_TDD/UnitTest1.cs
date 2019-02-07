@@ -539,6 +539,29 @@ namespace Cookbook_Web_App_TDD
             }
         }
 
+        [Fact]
+        public async void CanDeleteSavedRecipe()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanDeleteSavedRecipe").Options;
+            using (CookbookDbContext context = new CookbookDbContext(options))
+            {
+                SavedRecipe savedRecipe = new SavedRecipe();
+                savedRecipe.SavedRecipeID = 1;
+                savedRecipe.Name = "Chicken";
+                savedRecipe.APIReference = 2;
+                savedRecipe.UserID = 2;
+
+                SavedRecipeService savedRecipeService = new SavedRecipeService(context);
+
+                await savedRecipeService.CreateRecipe(savedRecipe);
+                await savedRecipeService.DeleteSavedRecipe(1);
+
+                var result = context.SavedRecipe.Any(s => s.SavedRecipeID == 1);
+
+                Assert.False(result);
+            }
+        }
+
 
 
 
