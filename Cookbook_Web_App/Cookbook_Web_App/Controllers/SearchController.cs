@@ -52,7 +52,10 @@ namespace Cookbook_Web_App.Controllers
             //    return NotFound();
             //}
             var userName = HttpContext.Session.GetString("UserName");
-
+            if (userName == null)
+            {
+                return RedirectToAction("Create", "User");
+            }
             //HttpContext.Session.SetString("UserName", user.UserName);
             await _context.SaveRecipe(id, userName, name);
             return RedirectToAction("Index", "SavedRecipe");

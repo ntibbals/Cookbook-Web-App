@@ -1,4 +1,9 @@
 ﻿
+body {
+    background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');
+    background-size: cover;
+}
+
 /*HamburgerMenu */
 #headcontain {
     text-align: left;
@@ -12,7 +17,7 @@ a {
 }
 
 span {
-    background-color: #eee;
+    background-color: darkorange;
 }
 
 a:hover {
@@ -137,7 +142,7 @@ main {
 
 .page-holder {
     background-color: white;
-    opacity: 0.7;
+    opacity: 0.9;
     border-radius: 42px;
     min-height: 50vh;
     width: 80vw;

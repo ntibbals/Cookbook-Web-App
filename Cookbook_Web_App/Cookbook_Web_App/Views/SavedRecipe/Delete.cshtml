@@ -4,8 +4,8 @@
 
     Layout = "_Layout";
 }
-
-<p> Are you sure you want to delete this recipe, @Model.Name?</p>
+<h4>Delete Recipe?</h4>
+<p> Are you sure you want to delete this recipe, @Model.Name? This will also delete all of your notes.</p>
 <form asp-action="Delete">
     <input type="hidden" asp-for="SavedRecipeID" />
     <input type="submit" value="Delete"  class="input-button"/>
