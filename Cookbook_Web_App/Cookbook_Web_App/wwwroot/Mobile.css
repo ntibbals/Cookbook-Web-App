@@ -62,6 +62,7 @@ a:hover {
         opacity: 0;
         z-index: 2;
 
+
     }
 
     #navToggle span {
@@ -115,10 +116,6 @@ a:hover {
 .standoutlink {
     text-decoration-line: underline;
     color: blue;
-}
-
-.underline {
-    text-decoration-line: underline;
 }
 
 /*colors */
