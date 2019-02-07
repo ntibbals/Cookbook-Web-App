@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 namespace Cookbook_Web_App.Models.Interfaces
 {
-    interface ISavedRecipe
+    public interface ISavedRecipe
     {
+        //read
+        Task<SavedRecipe> GetSavedRecipe(int? id);
+        Task<IEnumerable<SavedRecipe>> GetSavedRecipes();
+
+
     }
 }

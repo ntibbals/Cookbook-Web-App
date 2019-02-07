@@ -25,13 +25,13 @@ namespace Cookbook_Web_App.Models.Services
 
         public async Task<SavedRecipe> GetSavedRecipe(int? id)
         {
-            return await _context.SavedRecipe.FirstOrDefaultAsync(s => s.SavedRecipeID == id); )
+            return await _context.SavedRecipe.FirstOrDefaultAsync(s => s.SavedRecipeID == id);
         }
 
         //delete
         public async Task DeleteSavedRecipe(int id)
         {
-            SavedRecipe savedRecipe = _context.SavedRecipe.FirstOrDefault(s => s.SavedRecipeID == SavedRecipeID);
+            SavedRecipe savedRecipe = _context.SavedRecipe.FirstOrDefault(s => s.SavedRecipeID == id);
             _context.SavedRecipe.Remove(savedRecipe);
             await _context.SaveChangesAsync();
         }
