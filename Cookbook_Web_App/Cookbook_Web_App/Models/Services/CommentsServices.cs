@@ -31,7 +31,7 @@ namespace Cookbook_Web_App.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateComment(Comments comment)
+        public async Task GetComments(Comments comment)
         {
             _context.Comments.Update(comment);
             await _context.SaveChangesAsync();

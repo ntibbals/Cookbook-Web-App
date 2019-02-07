@@ -479,14 +479,10 @@ namespace Cookbook_Web_App_TDD
                 comments.SavedRecipeID = 3;
                 comments.Comment = "So delish";
 
-                comments.APIReference = 4;
-                comments.SavedRecipeID = 5;
-                comments.Comment = "So not delish";
-
                 CommentsServices commentsServices = new CommentsServices(context);
 
                 await commentsServices.CreateComment(comments);
-                await commentsServices.UpdateComment(comments);
+                await commentsServices.GetComments(comments);
 
                 var result = context.Comments.FirstOrDefault(c => c.ID == c.ID);
 

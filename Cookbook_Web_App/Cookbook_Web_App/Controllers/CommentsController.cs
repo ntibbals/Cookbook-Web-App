@@ -154,7 +154,7 @@ namespace Cookbook_Web_App.Controllers
                 try
                 {
 
-                    await _context.UpdateComment(comments);
+                    await _context.GetComments(comments);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
