@@ -12,6 +12,10 @@ h1, index-title {
     font-size: 4vw;
 }
 
+div {
+    line-height: normal;
+}
+
 h2 {
     font-family: 'Lobster Two', cursive;
     font-size: 2vw;
@@ -28,11 +32,10 @@ h3{
     text-align: right;
     font-size: 3vw;
 }
-h4{
+h4 {
     font-size: 2.5vw;
     text-align: left;
-}
-a {
-    color: black;
+    margin-bottom: 10px;
+
 }
 

@@ -67,6 +67,7 @@ a:hover {
         opacity: 0;
         z-index: 2;
 
+
     }
 
     #navToggle span {
@@ -117,6 +118,10 @@ a:hover {
     color: darkorange;
 }
 
+.standoutlink {
+    text-decoration-line: underline;
+    color: blue;
+}
 
 /*colors */
 header {
