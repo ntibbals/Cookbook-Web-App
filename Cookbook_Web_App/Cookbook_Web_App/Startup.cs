@@ -17,7 +17,9 @@ namespace Cookbook_Web_App
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
 
         }
         // This method gets called by the runtime. Use this method to add services to the container.
