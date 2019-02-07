@@ -42,6 +42,9 @@ namespace Cookbook_Web_App
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddScoped<IComments, CommentsServices>();
+            services.AddScoped<IUser, UserService>();
+            services.AddScoped<ISearch, SearchService>();
+            services.AddScoped<ISavedRecipe, SavedRecipeService>();
 
         }
 
