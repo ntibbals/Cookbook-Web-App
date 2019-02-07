@@ -4,6 +4,8 @@ using Xunit;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Cookbook_Web_App.Models.Services;
+using System.Linq;
 
 namespace Cookbook_Web_App_TDD
 {
@@ -421,15 +423,24 @@ namespace Cookbook_Web_App_TDD
         }
 
         [Fact]
-        public void CanCreateComments()
+        public async void CanCreateComments()
         {
             DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanCreateComments").Options;
-            using (CookbookDbContext context = new CookbookDbContext(Options))
+            using (CookbookDbContext context = new CookbookDbContext(options))
             {
                 Comments comments = new Comments();
                 comments.ID = 1;
+                comments.APIReference = 2;
+                comments.SavedRecipeID = 3;
+                comments.Comment = "So delish";
 
-                context.Comments
+                CommentsServices commentsServices = new CommentsServices(context);
+
+                await commentsServices.CreateComment(comments);
+
+                var result = context.Comments.FirstOrDefault(c => c.ID == comments.ID);
+
+                Assert.Equal(comments, result);
             }
         }
 
