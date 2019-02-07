@@ -61,7 +61,7 @@ namespace Cookbook_Web_App.Controllers
             IEnumerable<Ingredients> ingredients = null;
 
 
-            HttpResponseMessage responseRecipe = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Recipes/{id}");
+            HttpResponseMessage responseRecipe = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Recipes/{iD}");
             HttpResponseMessage responseInstructions = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Instructions");
             HttpResponseMessage responseIngredients = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/RecipeIngredients");
             HttpResponseMessage responseBaseIngredients = await client.GetAsync($"https://cookbookapi20190205105239.azurewebsites.net/api/Ingredients");
@@ -86,6 +86,8 @@ namespace Cookbook_Web_App.Controllers
             recipe.Ingredients = ingredients.Where(ri => ri.RecipeID == iD);
             recipe.Instructions = instructions.Where(ri => ri.RecipeId== iD);
             HttpContext.Session.SetInt32("CommentsID", id);
+            HttpContext.Session.SetString("Name", recipe.Name);
+
             return View(recipe);
         }
 

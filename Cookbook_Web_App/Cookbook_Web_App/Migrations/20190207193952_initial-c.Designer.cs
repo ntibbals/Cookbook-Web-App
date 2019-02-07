@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190206213424_again")]
-    partial class again
+    [Migration("20190207193952_initial-c")]
+    partial class initialc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -30,6 +30,8 @@ namespace Cookbook_Web_App.Migrations
 
                     b.Property<string>("Comment")
                         .HasColumnType("varchar(max)");
+
+                    b.Property<string>("Name");
 
                     b.Property<int>("SavedRecipeID");
 
