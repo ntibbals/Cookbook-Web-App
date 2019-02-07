@@ -1,20 +1,39 @@
 ﻿.search-holder {
     margin-top: 2vw;
+    margin-left: 10vw;
+    padding: 0;
 }
 
 .search-bar{
     box-sizing: border-box;
+    padding: 0px;
 }
 
 .search-input {
     box-sizing: border-box;
-    margin-right: 0%;
-    width: 50%;
-    margin-left: 17%;
+    width: 45vw;
+    margin-right: 8.5vw;
+    padding: 0px;
+    height: 5vh;
 }
 
 .search-button {
-    box-sizing: border-box;
     min-width: 60px;
-    width: 10%;
+    width: 10vw;
+    margin: 0;
+    height: 3vh;
+}
+
+.input-button {
+    background-color: cadetblue;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    margin: 5px;
+    min-height: 12px;
+    height: 5vh;
+    width: 10vw;
+}
+.input-button:hover{
+    background-color: black;
+    color: white;
 }

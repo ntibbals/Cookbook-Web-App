@@ -129,7 +129,7 @@ a:hover {
         transform: rotate(-45deg) translate(0, -1px);
     }
 
-#index-contain {
+#indexcontain {
     height: 9vw;
 }
 
@@ -223,7 +223,7 @@ a:hover {
     }
 
 
-    #index-contain {
+    #indexcontain {
         height: 9vw;
         width: 55vw;
         text-align: left;
