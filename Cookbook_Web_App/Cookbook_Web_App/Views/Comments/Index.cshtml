@@ -8,8 +8,11 @@
 <h1> Comments Test Layout</h1>
 
 <div>
-    <form>
-        <input type="submit" formaction="@Url.Action("RedirectToSave")" value="My Saved Recipes" class="input-button" />
+
+
+    <form asp-controller="SavedRecipe" asp-action="Index">
+        <input type="submit" value="My Saved Recipes" class="input-button" />
+
     </form>
     @foreach (var item in Model)
     {
@@ -24,9 +27,9 @@
         <form>
             @Html.ActionLink("Edit", "Edit", new { item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { item.ID }) |
-            @*<a href="/SavedRecipe/Details/{item.savedRecipeID}">Details</a>*@
-
-            <input type="submit" formaction="@Url.Action("RedirectToSave")" value="View Recipe" class="input-button" />
+        </form>
+        <form asp-controller="SavedRecipe" asp-action="Details" asp-route-id="@item.SavedRecipeID" style="display:inline">
+            <input type="submit" value="View Recipe" class="btn btn-primary" />
         </form>
     </div>
 

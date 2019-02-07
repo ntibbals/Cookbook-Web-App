@@ -14,10 +14,12 @@
     <input type="hidden" asp-for="Name" />
     <img src="@Model.Image" class="img-rounded" alt="">
     @foreach (var item in Model.Instructions)
+    { 
+
+    }
 
     <h4>Ingredients:</h4>
     @foreach (var item in Model.Ingredients)
-
     {
         <div>
             <input type="hidden" asp-for="Ingredients" />
