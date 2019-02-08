@@ -11,8 +11,8 @@
 
     <input type="hidden" asp-for="ID" />
     <input type="hidden" asp-for="Name" />
-    <div id="rimage">
-        <img src="@Model.ImageURL" class="img-rounded" alt="Recipe Image">
+    <div id="rimage-contain">
+        <img src="@Model.ImageURL" id="rimage" class="img-rounded" alt="Recipe Image">
     </div>
     <h4>Ingredients:</h4>
     @foreach (var item in Model.Ingredients)

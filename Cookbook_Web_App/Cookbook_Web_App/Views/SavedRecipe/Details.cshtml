@@ -10,11 +10,11 @@
     <h3>@Model.Name</h3>
     <form asp-action="RedirectToDetails">
         <input type="hidden" value="SavedRecipeID" asp-for="ID" />
-        <input type="submit" value="View Notes" class="input-button" />
+        <input type="submit" value="View Notes" id="body-but" class="input-button" />
     </form>
     <div>
-        <div id="rimage">
-            <img src="@Model.ImageURL" class="img-rounded" alt="Recipe Image">
+        <div id="rimage-contain">
+            <img src="@Model.ImageURL" id="rimage" class="img-rounded" alt="Recipe Image">
         </div>
         <h4>Ingredients</h4>
         <div>
@@ -42,6 +42,6 @@
 </div>
 <form asp-action="RedirectToDetails" >
     <input type="hidden" value="SavedRecipeID" asp-for="ID" />
-    <input type="submit" value="View Notes" class="input-button"/>
+    <input type="submit" value="View Notes"  id="body-but" class="input-button"/>
 </form>
 

@@ -15,14 +15,17 @@
     <tbody>
         @foreach (var recipe in Model)
         {
-            <tr>
-                <td>
-                    @recipe.Name
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@recipe.ID">GetDetails</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @recipe.Name
+            </td>
+            <td>
+                    <img src="@recipe.ImageURL" id="searchImage" class="img-rounded" alt="Recipe Image">
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@recipe.ID">GetDetails</a>
+            </td>
+        </tr>
 
         }
     <tbody>

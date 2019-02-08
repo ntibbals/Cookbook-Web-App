@@ -4,34 +4,32 @@
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
+<div id="comment-contain">
+    <div id="view-rs">
+        <form asp-controller="SavedRecipe" asp-action="Index">
+            <input type="submit" value="View Saved Recipes" id="body-but" class="input-button" />
+        </form>
+    </div>
+    <h4>All Notes</h4>
 
-<h4>All Notes</h4>
-
-<div>
-
-
-    <form asp-controller="SavedRecipe" asp-action="Index">
-        <input type="submit" value="My Saved Recipes" class="input-button" />
-
-    </form>
     @foreach (var item in Model)
     {
 
-    <div>
-        <p>Note: @Html.DisplayFor(modelItem => item.Comment)</p>
+        <div>
+            <p>Note: @Html.DisplayFor(modelItem => item.Comment)</p>
         </div>
-    <div>
-        <p>Recipe Name: @Html.DisplayFor(modelItem => item.Name)</p>
-    </div>
-    <div>
-        <form>
-            @Html.ActionLink("Edit", "Edit", new { item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { item.ID }) |
-        </form>
-        <form asp-controller="SavedRecipe" asp-action="Details" asp-route-id="@item.SavedRecipeID" style="display:inline">
-            <input type="submit" value="View Recipe" class="input-button" />
-        </form>
-    </div>
+        <div>
+            <p>Recipe Name: @Html.DisplayFor(modelItem => item.Name)</p>
+        </div>
+        <div>
+            <form>
+                @Html.ActionLink("Edit", "Edit", new { item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { item.ID }) |
+            </form>
+            <form asp-controller="SavedRecipe" asp-action="Details" asp-route-id="@item.SavedRecipeID">
+                <input type="submit" value="View @item.Name" id="body-but-note" class="input-button" />
+            </form>
+        </div>
 
     }
 

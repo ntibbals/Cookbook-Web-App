@@ -151,16 +151,63 @@ main {
     padding: 2vw;
     margin-top: 2vh;
 }
-img {
+#rimage {
     width: 30vw;
     max-height: 30vw;
     margin-left: auto;
     margin-right: auto;
     border-radius: 30px;
 }
-#rimage{
+#rimage-contain{
+
     float:right;
     padding-right: 5vw;
+}
+#pro-image {
+    width: 5vw;
+    height: 5vw;
+    /*margin-left: auto;
+    margin-right: auto;*/
+    /*margin: 0 auto;*/
+    padding-bottom: 5vw;
+}
+#username{
+     font-size: 3vw;
+}
+#user-contain{
+    margin-left: 15vw;
+}
+#user-control{
+    float: right;
+    padding-right: 15vw;
+}
+#searchImage{
+    width:2vw;
+    height:2vw;
+}
+#saved-contain {
+    margin-left: 15vw;
+}
+#view-rs{
+    float: right;
+    padding-right: 25vw;
+    padding-top: .5vw;
+
+}
+#comment-contain {
+    margin-left: 15vw;
+}
+#body-but:hover {
+    background-color: #bbb;
+    color: #222;
+}
+#body-but-note{
+    margin-left: 0vw;
+    width: auto;
+}
+#body-but-note:hover {
+    background-color: #bbb;
+    color: #222;
 }
 
 
