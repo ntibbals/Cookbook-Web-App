@@ -20,37 +20,47 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
-
-        //Get: Create User
         [HttpGet]
         public async Task<IActionResult> Index()
         {
- 
-                var name = HttpContext.Session.GetString("UserName");
-                User user = await _context.GetUser(name);
-                if (user == null)
-                {
-                    return RedirectToAction("Index", "User");
-                }
-                int? id = HttpContext.Session.GetInt32("CommentsID");
-                var allComments = await _context.GetComments();
-                var comment = allComments.Where(co => co.SavedRecipeID == co.ID);
-                if (comment == null)
-                {
-                    return NotFound();
-                }
-
-                return View(comment);
-          
-
-                //var name = userName;
-                //User user = await _context.GetUser(name);
-                //var allComments = await _context.GetComments();
-                //var comment = allComments.FirstOrDefault(co => co.ID == user.ID);
-                //return View(comment);
-
-           
+            int? id = HttpContext.Session.GetInt32("CommentsID");
+            var allComments = await _context.GetComments();
+            if (allComments == null)
+            {
+                return NotFound();
+            }
+            return View(allComments);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Index(string userName)
+        //{
+
+        //        var name = HttpContext.Session.GetString("UserName");
+        //        User user = await _context.GetUser(name);
+        //        if (user == null)
+        //        {
+        //            return RedirectToAction("Index", "User");
+        //        }
+        //        int? id = HttpContext.Session.GetInt32("CommentsID");
+        //        var allComments = await _context.GetComments();
+        //        var comment = allComments.Where(co => co.SavedRecipeID == co.ID);
+        //        if (comment == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return View(comment);
+
+
+        //        //var name = userName;
+        //        //User user = await _context.GetUser(name);
+        //        //var allComments = await _context.GetComments();
+        //        //var comment = allComments.FirstOrDefault(co => co.ID == user.ID);
+        //        //return View(comment);
+
+
+        //}
         /// <summary>
         /// Get Comments
         /// </summary>
@@ -63,13 +73,12 @@ namespace Cookbook_Web_App.Controllers
                 return NotFound();
             }
             var allComments = await _context.GetComments();
-            var comment = allComments.FirstOrDefault(co => co.ID == id);
-            if (comment ==null)
+            if (allComments ==null)
             {
                 return NotFound();
             }
 
-            return View(comment);
+            return View(allComments);
         }
 
         public async Task<IActionResult> View(int? id)

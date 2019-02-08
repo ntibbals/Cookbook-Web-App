@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cookbook_Web_App.Migrations
 {
     [DbContext(typeof(CookbookDbContext))]
-    [Migration("20190207233018_initial-c")]
+    [Migration("20190207235620_initial-c")]
     partial class initialc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
