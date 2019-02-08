@@ -5,9 +5,9 @@
 
     Layout = "_Layout";
 }
+<div id="saved-contain">
+    <h4>My Recipes</h4>
 
-<h4>My Recipes</h4>
-<div>
 
     <table>
         <thead>
@@ -16,32 +16,26 @@
                 <th>
                     Name
                 </th>
-                <th>
-                    
-                </th>
-                <th>
-
-                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.SavedRecipeID"> Recipe Details</a>
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.SavedRecipeID">Delete Recipe</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.SavedRecipeID"> Recipe Details</a>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.SavedRecipeID">Delete Recipe</a>
+                    </td>
+                </tr>
 
 
             }
 
         </tbody>
-        </table>
+    </table>
 </div>
