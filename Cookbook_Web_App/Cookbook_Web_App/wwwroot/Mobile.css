@@ -12,7 +12,7 @@ body {
 
 a {
     text-decoration: none;
-    color: #eee;
+    color: darkblue;
     transition: color 0.3s ease;
 }
 
@@ -151,7 +151,11 @@ main {
     padding: 2vw;
     margin-top: 2vh;
 }
-
+img {
+    max-width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 
