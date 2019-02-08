@@ -39,7 +39,7 @@ namespace Cookbook_Web_App
             });
             services.AddMvc();
             services.AddDbContext<CookbookDbContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddScoped<IComments, CommentsServices>();
             services.AddScoped<IUser, UserService>();
