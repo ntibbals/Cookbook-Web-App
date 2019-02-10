@@ -8,6 +8,10 @@ namespace Cookbook_Web_App.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Returns homepage view
+        /// </summary>
+        /// <returns>View(Index)</returns>
         public IActionResult Index()
         {
             return View();
