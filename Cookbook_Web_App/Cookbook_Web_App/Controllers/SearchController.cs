@@ -24,7 +24,11 @@ namespace Cookbook_Web_App.Controllers
 
         static HttpClient client = new HttpClient();
 
-
+        /// <summary>
+        /// Gets search results based on user input
+        /// </summary>
+        /// <param name="searchRecipes">string</param>
+        /// <returns>View(list of recipes)</returns>
         public async Task<IActionResult> Index(string searchRecipes)
         {
 
@@ -38,25 +42,30 @@ namespace Cookbook_Web_App.Controllers
             
             return View(val);
         }
-
+        /// <summary>
+        /// Get details of recipe by id
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Details view of recipe</returns>
         public async Task<IActionResult> Details(int id)
         {
             return View(await _context.GetRecipe(id));
             
         }
-
+        /// <summary>
+        /// Save searched recipe to user's saved recipes
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <param name="name">string</param>
+        /// <returns>Redirect to saved Recipes</returns>
         public async Task<IActionResult> Save([Bind("SavedRecipeID,UserID,APIReference,Name")]int id, string name)
         {
-            //if (id != null)
-            //{
-            //    return NotFound();
-            //}
+
             var userName = HttpContext.Session.GetString("UserName");
             if (userName == null)
             {
                 return RedirectToAction("Create", "User");
             }
-            //HttpContext.Session.SetString("UserName", user.UserName);
             await _context.SaveRecipe(id, userName, name);
             return RedirectToAction("Index", "SavedRecipe");
         }
