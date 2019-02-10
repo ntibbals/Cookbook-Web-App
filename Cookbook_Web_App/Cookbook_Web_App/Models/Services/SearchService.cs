@@ -10,12 +10,19 @@ namespace Cookbook_Web_App.Models.Services
 {
     public class SearchService : ISearch
     {
+        static HttpClient client = new HttpClient();
+
         private CookbookDbContext _context { get; }
 
         public SearchService(CookbookDbContext context)
         {
             _context = context;
         }
+        /// <summary>
+        /// Gets recipe by id from API
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Recipe</returns>
         public async Task<Recipe> GetRecipe(int id)
         {
             Recipe recipe = new Recipe();
@@ -55,7 +62,10 @@ namespace Cookbook_Web_App.Models.Services
             return recipe;
         }
 
-        static HttpClient client = new HttpClient();
+        /// <summary>
+        /// Gets all recipes from API
+        /// </summary>
+        /// <returns>Task Ienumerable of Recipes</returns>
         public async Task<IEnumerable<Recipe>> GetRecipesAsync()
         {
             IEnumerable<Recipe> values = null;
@@ -69,6 +79,13 @@ namespace Cookbook_Web_App.Models.Services
             return values;
         }
 
+        /// <summary>
+        /// Saves Recipe from API as savedRecipe
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <param name="userName">string</param>
+        /// <param name="name">string</param>
+        /// <returns>SavedRecipe</returns>
         public async Task<SavedRecipe> SaveRecipe(int id, string userName, string name)
         {
             User user = _context.User.FirstOrDefault(u => u.UserName == userName);
