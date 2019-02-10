@@ -1,5 +1,6 @@
 # Claire's Cookbook
-
+Search and save recipes from ![CookBookAPI](https://github.com/KKetter/CookBookAPI) to your personal user account. After making a recipe, or when you save it, add notes to the recipes for next time, or to help you remember something special about the recipe.
+![View Deployed Version Here](ClairesCookBook.AzureWebsites.Net)
 
 ## Technologies, Tools, and Libraries
 ### Languages
@@ -79,3 +80,9 @@ Summary: The cookbook API is a open, RESTful API that contains recipes, includin
 #### Notes
 ![view notes](Assets/sample_img/notes_view.PNG)
 ![view all notes](Assets/sample_img/all_notes.PNG)
+
+
+## Contributors
+Ryna Truong, Nate Tibbals, Clarice Costello, Michael Goseco
+
+
