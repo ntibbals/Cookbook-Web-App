@@ -22,6 +22,15 @@
 ![View API documentation here](https://github.com/KKetter/CookBookAPI)
 Summary: The cookbook API is a open, RESTful API that contains recipes, including their instructions and ingredients. We used this API to search for recipes a user could save to their personal list of recipes.
 
+
+## Schema
+![Schema Image](Assets/Schema.png)
+
+### Schema Description
+- The user contains a Primary Key of ID(int), UserName(varchar). User has the navigational property of Saved Recipes. It has a one to many relationship with SavedRecipes. 
+- SavedRecipes contains a Primary Key of ID(int) a Foreign Key of UserID(int) referencing the User table. It also contains a ApiRecipeID which is a reference to the Recipe inside the API. It has a one to many relationship with comments. 
+- Comments has a Primary Key of ID(int) a foreign key of SavedRecipesID, and a Comment(varchar). It has a navigational property of SavedRecipes and a many to one relationship with SavedRecipes. 
+
 ## Set Up Instructions - Local Machine
 - Fork the Cookbook repository.
 - Open project in Visual Studios.
@@ -50,10 +59,23 @@ Summary: The cookbook API is a open, RESTful API that contains recipes, includin
 - When you view the details of a saved recipe, you will be given to option to add notes to your recipe, such as "great date night meal" or "cook an extra 15 minutes". These notes can be viewed from the recipe, or fromt he My Notes link on the nav bar.
 
 
-## Schema
-![Schema Image](Assets/Schema.png)
 
-### Schema Description
-- The user contains a Primary Key of ID(int), UserName(varchar). User has the navigational property of Saved Recipes. It has a one to many relationship with SavedRecipes. 
-- SavedRecipes contains a Primary Key of ID(int) a Foreign Key of UserID(int) referencing the User table. It also contains a ApiRecipeID which is a reference to the Recipe inside the API. It has a one to many relationship with comments. 
-- Comments has a Primary Key of ID(int) a foreign key of SavedRecipesID, and a Comment(varchar). It has a navigational property of SavedRecipes and a many to one relationship with SavedRecipes. 
+
+
+## Images
+#### Homepage
+![homepage](Assets/sample_img/home.PNG)
+#### Create and Login
+![create](Assets/sample_img/create.PNG)
+![login](Assets/sample_img/login.PNG)
+![User view](Assets/sample_img/userpage.PNG)
+#### Search Recipes
+![search results](Assets/sample_img/search_results.PNG)
+![search recipe details](Assets/sample_img/search_recipe_results.PNG)
+![saved search recipe](Assets/sample_img/save_searched_recipe.PNG)
+#### View Saved Recipes
+![saved recipes list](Assets/sample_img/saved_recipes.PNG)
+![saved recipes details](Assests/sample_img/saved_recipe_view.PNG)
+#### Notes
+![view notes](Assets/sample_img/notes_view.PNG)
+![view all notes](Assets/sample_img/all_notes.PNG)
