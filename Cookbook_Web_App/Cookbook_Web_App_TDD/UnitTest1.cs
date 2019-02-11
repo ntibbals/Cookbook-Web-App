@@ -770,7 +770,7 @@ namespace Cookbook_Web_App_TDD
             {
                 
                 Recipe testRecipe = new Recipe();
-                testRecipe.ID = 3;
+                testRecipe.ID = 1;
                 testRecipe.Name = "Peaches and Cream";
 
                 User user = new User();
@@ -783,7 +783,7 @@ namespace Cookbook_Web_App_TDD
                 SearchService searchServ = new SearchService(context);
                 var recipeResult = await searchServ.SaveRecipe(testRecipe.ID, user.UserName, testRecipe.Name);
 
-                Assert.Equal(3, recipeResult.SavedRecipeID);
+                Assert.Equal(1, recipeResult.SavedRecipeID);
                 
             }
 
