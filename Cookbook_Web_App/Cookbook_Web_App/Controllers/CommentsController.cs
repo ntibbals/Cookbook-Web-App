@@ -20,10 +20,14 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Home page of comments model
+        /// </summary>
+        /// <returns>inddex view</returns>
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            int? id = HttpContext.Session.GetInt32("CommentsID");
+            int? id = HttpContext.Session.GetInt32("CommentsID"); /// pull saved recipe id from session located in saved recipe controller, details method
             var allComments = await _context.GetComments();
             if (allComments == null)
             {
@@ -32,6 +36,7 @@ namespace Cookbook_Web_App.Controllers
             return View(allComments);
         }
 
+        /********* Commented out to trouble shoot additional feature to insert user auth on comments index page************/
         //[HttpGet]
         //public async Task<IActionResult> Index(string userName)
         //{
@@ -85,7 +90,7 @@ namespace Cookbook_Web_App.Controllers
         {
             if (id == null)
             {
-                id = HttpContext.Session.GetInt32("CommentsID");
+                id = HttpContext.Session.GetInt32("CommentsID");  /// pull saved recipe id from session located in saved recipe controller, details method
                 if (id == null)
                 {
                     return NotFound();
@@ -106,8 +111,8 @@ namespace Cookbook_Web_App.Controllers
         {
             if (savedRecipeId == null)
             {
-                savedRecipeId = HttpContext.Session.GetInt32("CommentsID");
-                name = HttpContext.Session.GetString("Name");
+                savedRecipeId = HttpContext.Session.GetInt32("CommentsID");  /// pull saved recipe id from session located in saved recipe controller, details method
+                name = HttpContext.Session.GetString("Name"); /// pull username from session located in saved recipe controller, details method
                 if (savedRecipeId == null)
                 {
                     return NotFound();
@@ -229,12 +234,18 @@ namespace Cookbook_Web_App.Controllers
             return RedirectToAction(nameof(View));
         }
 
+        /// <summary>
+        /// Redirect to Create a Comment Page view, pulls in saved recipe id
+        /// </summary>
+        /// <param name="savedRecipeId">user saved recipe id</param>
+        /// <param name="name">User name</param>
+        /// <returns>Comment create page</returns>
         public IActionResult RedirectToDetails(int? savedRecipeId, string name)
         {
             if (savedRecipeId == null)
             {
-                savedRecipeId = HttpContext.Session.GetInt32("CommentsID");
-                name = HttpContext.Session.GetString("Name");
+                savedRecipeId = HttpContext.Session.GetInt32("CommentsID");  /// pull saved recipe id from session located in saved recipe controller, details method
+                name = HttpContext.Session.GetString("Name");  /// pull username from session located in saved recipe controller, details method
 
                 if (savedRecipeId == null)
                 {
@@ -243,12 +254,19 @@ namespace Cookbook_Web_App.Controllers
             }
             return RedirectToAction("Create", "Comments", new { savedRecipeId, name });
         }
+
+        /// <summary>
+        /// Redirect to saved recipe details page
+        /// </summary>
+        /// <param name="id">recipe id</param>
+        /// <param name="name">user name</param>
+        /// <returns>saved recipe details page with id</returns>
         public IActionResult RedirectToSave(int? id, string name)
         {
             if (id == null)
             {
-                id = HttpContext.Session.GetInt32("CommentsID");
-                name = HttpContext.Session.GetString("Name");
+                id = HttpContext.Session.GetInt32("CommentsID");  /// pull saved recipe id from session located in saved recipe controller, details method
+                name = HttpContext.Session.GetString("Name");  /// pull usernamefrom session located in saved recipe controller, details method
 
                 if (id == null)
                 {
