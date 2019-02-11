@@ -25,6 +25,11 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Gets list of saved recipes
+        /// </summary>
+        /// <param name="userName">string</param>
+        /// <returns>View(userRecipes)</returns>
         public async Task<IActionResult> Index(string userName)
         {
             if (userName == null)
@@ -49,7 +54,11 @@ namespace Cookbook_Web_App.Controllers
             }
         }
 
-        //Get SavedRecipe
+        /// <summary>
+        /// Get details of a recipe by id
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View(recipe)</returns>
         public async Task<IActionResult> Details(int id)
         {
             SavedRecipe savedRecipe = await _context.GetSavedRecipe(id);
@@ -91,13 +100,20 @@ namespace Cookbook_Web_App.Controllers
             return View(recipe);
         }
 
-        //Create SavedRecipe
+        /// <summary>
+        /// Returns create view
+        /// </summary>
+        /// <returns>View(create)</returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        //Post
+        /// <summary>
+        /// saves recipe to user, returns saved recipe page
+        /// </summary>
+        /// <param name="savedRecipe"></param>
+        /// <returns>View(savedRecipes)</returns>
         [HttpPost]
         public async Task<IActionResult> Create([Bind("SavedRecipeID,UserID,APIReference,Name")] SavedRecipe savedRecipe)
         {
@@ -112,7 +128,11 @@ namespace Cookbook_Web_App.Controllers
             return View(savedRecipe);
         }
 
-        //Get Delete SavedRecipe
+        /// <summary>
+        /// route to delete confimation page
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Delete confimation page</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,7 +149,11 @@ namespace Cookbook_Web_App.Controllers
             return View(savedRecipe);
         }
 
-        //Delete SavedRecipe
+        /// <summary>
+        /// Confirms delete and deletes saved recipe by id.
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Redirect to SavedRecipe index</returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
@@ -139,11 +163,20 @@ namespace Cookbook_Web_App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Redirect helper function
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Redirect to Comments view</returns>
         public IActionResult RedirectToDetails(int id)
         {
             return RedirectToAction("View", "Comments");
         }
-
+        /// <summary>
+        /// helper function to check if recipe exists
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>bool</returns>
         private bool SavedRecipeExists(int id)
         {
             return _context.SavedRecipeExists(id);

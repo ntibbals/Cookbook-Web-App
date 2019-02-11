@@ -20,12 +20,21 @@ namespace Cookbook_Web_App.Controllers
             _context = context;
         }
         //Get LOGIN
+        /// <summary>
+        /// Get login page
+        /// </summary>
+        /// <returns>Returns View(Login)</returns>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-
+        /// <summary>
+        /// Post Login
+        /// Processes Login, confirms user exists, starts session
+        /// </summary>
+        /// <param name="userInput">string</param>
+        /// <returns>View(index)</returns>
         [HttpPost]
         public async Task<IActionResult> Login(string userInput)
         {
@@ -44,8 +53,11 @@ namespace Cookbook_Web_App.Controllers
             }
 
         }
-        //Get User
-        public async  Task<IActionResult> Index(string userName)
+        /// <summary>
+        /// Gets user information and user page
+        /// </summary>
+        /// <returns>View of user information</returns>
+        public async  Task<IActionResult> Index()
         {
             var name = HttpContext.Session.GetString("UserName");
             var users = await _context.GetUsersAsync();
@@ -59,6 +71,10 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get: Create User
+        /// <summary>
+        /// Get's Create user view
+        /// </summary>
+        /// <returns>View(create)</returns>
         [HttpGet]
         public IActionResult Create()
         {
@@ -66,6 +82,11 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //POST: create user
+        /// <summary>
+        /// Takes username input, checks that name is unique, and creates new user.
+        /// </summary>
+        /// <param name="user">User</param>
+        /// <returns>user profile view/View(Index)</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,UserName")] User user)
@@ -89,6 +110,11 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get: Edit user
+        /// <summary>
+        /// Get edit user page by id
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View(edit)</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -106,6 +132,12 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Post: Edit user
+        /// <summary>
+        /// Based on user input, changes username
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <param name="user">User</param>
+        /// <returns>User info/View(index)</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("ID,UserName")] User user)
         {
@@ -139,6 +171,11 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Get Delete user
+        /// <summary>
+        /// Get delete page by id
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Delete page view</returns>
         public async Task<IActionResult> Delete(int id)
         {
             var users = await _context.GetUsersAsync();
@@ -152,6 +189,11 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //Post Delete user
+        /// <summary>
+        /// Confirms delete and removes user from database by id
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Homepage view</returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
@@ -160,14 +202,21 @@ namespace Cookbook_Web_App.Controllers
             HttpContext.Session.Remove("UserName");
             return RedirectToAction("Index", "Home");
         }
-
+        /// <summary>
+        /// Ends session
+        /// </summary>
+        /// <returns>Homepage view</returns>
         public IActionResult LogOut()
         {
             HttpContext.Session.Remove("UserName");
             return RedirectToAction("Index", "Home");
         }
 
-
+        /// <summary>
+        /// Checks that user exists by id
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>bool</returns>
         private async Task<bool> UserExistsAsync(int id)
         {
             var users = await _context.GetUsersAsync();
@@ -176,6 +225,10 @@ namespace Cookbook_Web_App.Controllers
 
 
         //--------------------------------------------//
+        /// <summary>
+        /// Second create method
+        /// </summary>
+        /// <returns>Create2 view</returns>
         //Get: Create User
         [HttpGet]
         public IActionResult Create2()
@@ -184,6 +237,11 @@ namespace Cookbook_Web_App.Controllers
         }
 
         //POST: create user
+        /// <summary>
+        /// second create page if original user input was a duplicate
+        /// </summary>
+        /// <param name="user">User</param>
+        /// <returns>View</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create2([Bind("ID,UserName")] User user)
