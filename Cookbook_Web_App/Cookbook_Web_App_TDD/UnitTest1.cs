@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Cookbook_Web_App.Models.Services;
 using System.Linq;
+using System.Net.Http;
 
 namespace Cookbook_Web_App_TDD
 {
@@ -758,5 +759,34 @@ namespace Cookbook_Web_App_TDD
             }
         }
 
+        /// <summary>
+        /// Can save new recipe through search service
+        /// </summary>
+        [Fact]
+        public async void CanSaveRecipe()
+        {
+            DbContextOptions<CookbookDbContext> options = new DbContextOptionsBuilder<CookbookDbContext>().UseInMemoryDatabase("CanSaveSearchRecipe").Options;
+            using (CookbookDbContext context = new CookbookDbContext(options))
+            {
+                
+                Recipe testRecipe = new Recipe();
+                testRecipe.ID = 3;
+                testRecipe.Name = "Peaches and Cream";
+
+                User user = new User();
+                user.ID = 1;
+                user.UserName = "user";
+
+                UserService userService = new UserService(context);
+
+                await userService.CreateUser(user);
+                SearchService searchServ = new SearchService(context);
+                var recipeResult = await searchServ.SaveRecipe(testRecipe.ID, user.UserName, testRecipe.Name);
+
+                Assert.Equal(3, recipeResult.SavedRecipeID);
+                
+            }
+
+        }
     }
 }
