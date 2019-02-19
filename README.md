@@ -1,6 +1,6 @@
 # Claire's Cookbook
 Search and save recipes from [CookBookAPI](https://github.com/KKetter/CookBookAPI) to your personal user account. After making a recipe, or when you save it, add notes to the recipes for next time, or to help you remember something special about the recipe.
-[View Deployed Version Here](www.ClairesCookBook.AzureWebsites.Net)
+[View Deployed Version Here](https://clairescookbook.azurewebsites.net/)
 
 ## Technologies, Tools, and Libraries
 ### Languages
