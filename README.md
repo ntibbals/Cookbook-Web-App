@@ -20,7 +20,7 @@ Search and save recipes from [CookBookAPI](https://github.com/KKetter/CookBookAP
 - Draw IO
 
 ## Cookbook API
-![View API documentation here](https://github.com/KKetter/CookBookAPI)
+[View API documentation here](https://github.com/KKetter/CookBookAPI)
 Summary: The cookbook API is a open, RESTful API that contains recipes, including their instructions and ingredients. We used this API to search for recipes a user could save to their personal list of recipes.
 
 
